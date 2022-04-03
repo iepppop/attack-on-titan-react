@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import styled from 'styled-components';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import MainPage from './pages/MainPage';
+import Levi from './pages/Levi';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/levi" element={<Levi />} />
+    </Routes>
+    </BrowserRouter>
+    </Container>
+  
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+`
+
+
