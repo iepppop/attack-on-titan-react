@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const Hero = ({ img, alt, name, name2, korean, color }) => {
+const Hero = ({ img, alt, name, name2, korean, color, toggle }) => {
   return (
-    <Container>
+    <Container onClick={toggle}>
         <Wrapper>
         <Img src={img} alt={alt} />
         <HeroName >

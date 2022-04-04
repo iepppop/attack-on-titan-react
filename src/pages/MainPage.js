@@ -17,9 +17,9 @@ const MainPage = () => {
       <>
     <Main />
     <HeroWrap>
-    <Hero {...levi}/>
-    <Info isOpen={isOpen} toggle={toggle}/>
-    <Hero {...armin}/>
+    <Info {...props} isOpen={isOpen} toggle={toggle}/>
+    <Hero {...levi} toggle={toggle}/>
+    <Hero {...armin} toggle={toggle}/>
     <Hero {...eren}/>
     <Hero {...mikasa}/>
     <Hero {...reiner}/>
@@ -34,4 +34,5 @@ const HeroWrap = styled.div`
   display:flex;
   width:100%;
   box-sizing: border-box;
+  position:relative;
 `
