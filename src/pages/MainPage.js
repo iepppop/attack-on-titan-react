@@ -3,23 +3,19 @@ import Main from "../components/Main";
 import styled from 'styled-components';
 import { eren, mikasa, levi, armin, reiner } from '../components/HeroData';
 import { useState } from 'react';
+import InfoDate, { erendata, mikasadata, levidata, armindata, reinerdata }  from "../components/InfoData";
 import Info from "../components/Info";
+import { useEffect } from "react";
+import { InfoData } from '../components/InfoData';
 
 
 const MainPage = () => {
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => {
-      setIsOpen(!isOpen)
-  }
-
   return (
       <>
     <Main />
     <HeroWrap>
-    <Info {...props} isOpen={isOpen} toggle={toggle}/>
-    <Hero {...levi} toggle={toggle}/>
-    <Hero {...armin} toggle={toggle}/>
+    <Hero {...levi} />
+    <Hero {...armin} />
     <Hero {...eren}/>
     <Hero {...mikasa}/>
     <Hero {...reiner}/>

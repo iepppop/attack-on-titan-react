@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { eren,mikasa } from './InfoData';
+import InfoData from './InfoData';
 
 
-const Info = ({ isOpen, toggle }) => {
+
+const Info = ({ isOpen, toggle, name, alt }) => {
+
   return (
     <InfoContainer isOpen={isOpen} onClick={toggle} >
-
-         fasfasfasfasfasfasf
+        {name?.name}
         </InfoContainer>
   )
 }
