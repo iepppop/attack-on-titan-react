@@ -1,44 +1,67 @@
-import styled, { keyframes }  from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, initialState } from 'react';
+import { motion } from 'framer-motion';
+import Slider from './Slider';
 
-const Hero = ({ img, alt, name, name2, korean, color, japann, infoimg, content, mark }) => {
+
+
+const Hero = ({ img, alt, name, name2, name3, korean, color, japann, infoimg, content, mark, videos }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen)
     }
 
+    const config = [
+        { 
+            title: 'iamge one',
+            image: 'https://blog.kakaocdn.net/dn/rmxlK/btrywvUPdXp/G5fEkxoKZyv7LgxlI1KK11/img.png'
+        },
+        { 
+            title: 'iamge two',
+            image: 'https://blog.kakaocdn.net/dn/ccYzxk/btryzpFC88n/tJpsNggVP7DQm5iKFTk2K1/img.png'
+        },
+        { 
+            title: 'iamge three',
+            image: 'https://blog.kakaocdn.net/dn/cf7lHy/btryx4hDTmM/JRtWUQkNj1zmyyqtQpuZW0/img.png'
+        }
+    ]
+
     return (
         <>
-        <Container onClick={toggle}>
-            <Wrapper>
-                <Img src={img} alt={alt} />
-                <HeroName >
-                    {name}<HeroP>{name2}</HeroP>
-                    <Koreaname style={{ background: color }}>{korean}</Koreaname>
-                </HeroName>
-            </Wrapper>
-            <InfoWrap isOpen={isOpen}>
-      
-              
-                <Info> 
-                    <InfoBackground>
-                        <Name>
-                    <Nameh1>{name} {name2}</Nameh1>
-                    <Nameh2 style={{ background: color }}>{japann}</Nameh2>
-                    <Content>{content}</Content>
-                    </Name>
-                    <InfoImg src={infoimg} width={1500}></InfoImg>
-                    </InfoBackground>
-                    <InfoBottom >
-                        <InfoMark style={{ background: color }}>
-                            <InfoImgMark src={mark} width={250}/>
-                        </InfoMark>
-                    </InfoBottom>
+            <Container>
+                <Wrapper onClick={toggle}>
+                    <Img src={img} alt={alt} />
+                    <HeroName >
+                        {name}<HeroP>{name2}</HeroP>
+                        <Koreaname style={{ background: color }}>{korean}</Koreaname>
+                    </HeroName>
+                </Wrapper>
+                <InfoWrap isOpen={isOpen}>
+                    <Info>
+                        <InfoBackground>
+                            <Name>
+                                <Nameh1>{name} {name2}</Nameh1>
+                                <Nameh2 style={{ background: color }}>{korean}</Nameh2>
+                                <Content>{content}</Content>
+                            </Name>
+                            <InfoImg src={infoimg} width={1500} />
+                        </InfoBackground>
+                        <InfoBottom >
+                            <InfoMark style={{ background: color }}>
+                                <InfoImgMark src={mark} width={250} />
+                            </InfoMark>
+                            <InfoVideo>   
+                            
+                                     <Slider />
+                              
+               
+                            </InfoVideo>
+                        </InfoBottom>
                     </Info>
-         
-            </InfoWrap>
-        </Container>
+
+                </InfoWrap>
+            </Container>
         </>
     )
 }
@@ -78,45 +101,45 @@ const Img = styled.img`
 
 const HeroName = styled.div`
    position:absolute;
-   z-index:2;
-   bottom:50px;
-   left:40px;
+   z-index:1;
+   bottom:0px;
+   left:38px;
    color:white;
-   font-size:60px;
+   font-size:52px;
    opacity:0; 
-   font-weight:900;
-   font-family: 'Noto Sans KR', sans-serif;
+   font-weight:800;
+   font-family: 'Poppins' , sans-serif;
 
    ${Container}:hover & { 
     opacity:1; 
     transition: 0.4s ease-in-out;
    }
+
 `
 
 const HeroP = styled.div`
     margin-top:-30px;
-    margin-bottom:10px;
 `
 
 const Koreaname = styled.div`
     font-size:25px;
     display:inline-block;
     vertical-align: top;
-    padding:2px 5px;
+    padding:3px 10px 0px 10px;
     font-weight:600;
 `
 
 const InfoWrap = styled.div`
-width: ${({ isOpen }) => (isOpen ? '100%' : '0')};
-
-top:0;
-right:0;
-transition: 0.3s ease-in-out;
-position: fixed;
-z-index:998;
-background:#000;
-height: 100%;
-color:white;
+    width: ${({ isOpen }) => (isOpen ? '100%' : '0')};
+    top:0;
+    right:0;
+    transition: 0.3s ease-in-out;
+    position: fixed;
+    z-index:998;
+    background:#000;
+    height: 100%;
+    color:white;
+    cursor:default;
 `
 
 const Info = styled.div`
@@ -161,7 +184,7 @@ const Nameh2 = styled.div`
    display:inline-block;
    padding: 2px 15px;
    font-family: 'Noto Sans KR', sans-serif;
-   font-weight:900;
+   font-weight:700;
    margin:0 0 0 20px;
    margin-top:-20px;
 `
@@ -170,7 +193,28 @@ const Content = styled.div`
    margin:50px 0 0 20px;
    width:600px;
    line-height:180%;
-   
+`
+
+const boxFade = keyframes`
+  0% {
+    top: -300px;
+ 
+  }
+  50% {
+    top: -310px;
+  }
+  100% {
+    top: -300px;
+  }
+`
+
+const fadeIn = keyframes`
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
 `
 
 const InfoImg = styled.img`
@@ -180,17 +224,9 @@ const InfoImg = styled.img`
    top:-300px;
    width: ${({ isOpen }) => (isOpen ? '0' : '80%')};
    transtion: 0.3s ease-in-out;
-`
-
-const fadein = keyframes`
-0% {
-    width : 10px;
-}
-100% {
-    width : 1000px;
+   z-index:-1;
 }
 `
-
 
 const InfoBottom = styled.div`
    position:absolute;
@@ -204,10 +240,19 @@ const InfoBottom = styled.div`
 
 const InfoMark = styled.div`
    width:20%;
-   display:flex;  align-items:center;
+   display:flex;  
+   align-items:center;
    justify-content:center;
 `
 
 const InfoImgMark = styled.img`
 width: ${({ isOpen }) => (isOpen ? '0' : '70%')};
+padding:20px;
+`
+
+const InfoVideo = styled.div`
+    width:80%;
+    height:100%;
+    position:relative;
+    white-space:nowrap;
 `
