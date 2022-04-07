@@ -8,7 +8,8 @@ export const eren = {
     color:'#415f57',
     mark:'https://blog.kakaocdn.net/dn/qdl88/btryrqZBPLh/pOH8khnKVNKlBMDTVQDdPK/img.png',
     content:'어렸을 때부터 벽 밖의 세상을 갈망했다. 845년 이후, 거인의 침공으로 어머니를 잃었을 때, 그는 거인을 추방하겠다는 강한 열망을 가지고 104번째 훈련단에 합류했다. 3년간의 엄격한 훈련을 마친 후, 벽 밖을 갈망하고 거인에 대한 증오로 인해 그는 훈련단 초기부터 조사병단이 되고자 했다.',
-    videos:'https://blog.kakaocdn.net/dn/rmxlK/btrywvUPdXp/G5fEkxoKZyv7LgxlI1KK11/img.png'
+    videos:
+    'https://blog.kakaocdn.net/dn/rmxlK/btrywvUPdXp/G5fEkxoKZyv7LgxlI1KK11/img.png',
 };
 
 export const mikasa = {
