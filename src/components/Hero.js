@@ -1,9 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { BsChevronLeft,BsChevronRight } from "react-icons/bs";
 
 const Hero = ({
   img,
@@ -18,22 +16,73 @@ const Hero = ({
   content,
   mark,
   videos,
+  videos2,
+  videos3,
+  videos4
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
   const sliderRef = useRef();
-  const [videoImg, setVideoImg] = useState([
-    `${videos}`,
-    `${videos}`,
-    `${videos}`,
-  ]);
+  const videoImg = [`${videos}`, `${videos2}`, `${videos3}`, `${videos4}`]
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
+  const transitionTime = 500;
+  const transitionStyle = `transform ${transitionTime}ms ease 0s`;
+  const [slideTransition, setTransition] = useState(transitionStyle);
 
-  useEffect(() => {
-    sliderRef.current.scrollLeft = (window.innerWidth*0.75 - (window.innerWidth - window.innerWidth*0.75) / 2);
-  }, [])
+
+
+  function setSlides() {
+    let addedFront = [];
+    let addedLast = [];
+    var index = 0;
+    while (index < 2) {
+      addedLast.push(videoImg[index % videoImg.length])
+      addedFront.unshift(videoImg[videoImg.length - 1 - index % videoImg.length])
+      index++;
+    }
+    return [...addedFront, ...videoImg, ...addedLast];
+  }
+
+
+  let slides = setSlides();
+
+  function handleSlide(index) {
+    if (index < 0) {
+      index = videoImg.length - 1;
+    }
+    else if (index > videoImg.length - 1) {
+      index = 0;
+    }
+    setCurrentIndex(index);
+  }
+
+  function getItemIndex(index) {
+    index -= 2;
+    if (index < 0) {
+      index += videoImg.length;
+    }
+    else if (index >= videoImg.length + 1) {
+      index -= videoImg.length;
+    }
+    return index;
+  }
+
+  function replaceSlide(index) {
+    setTimeout(() => {
+      setTransition('');
+      setCurrentIndex(index);
+  }, transitionTime)
+  }
+
+  function handleSwipe(direction) {
+    setIsSwiping(true);
+    handleSlide(currentIndex + direction)
+}
 
   return (
     <>
@@ -45,6 +94,7 @@ const Hero = ({
             <HeroP>{name2}</HeroP>
             <Koreaname style={{ background: color }}>{korean}</Koreaname>
           </HeroName>
+          <HeroBack />
         </Wrapper>
         <InfoWrap isOpen={isOpen}>
           <Info>
@@ -70,11 +120,31 @@ const Hero = ({
                 </MarkWrap>
               </InfoMark>
               <SliderWrap>
-                <SliderWrapper ref={sliderRef}>
-                  {videoImg.map((video, index) => {
-                    return <Imgs src={video} index={index} />;
+                <SliderWrapper
+                  ref={sliderRef} style={{
+                    transform: `translateX(${(-100 / slides.length  ) * (0.5 + currentIndex)}%)`,
+                    transition: slideTransition
+                    // ,opacity:`${currentIndex ?  '1' : '0.5'}`
+                  }}>
+                  {slides.map((video, index) => {
+                    const itemIndex = getItemIndex(index);
+                    return (
+                      <a>
+                      <Imgs src={slides[itemIndex]} alt={`banner${itemIndex}`} 
+                      style={{ 
+                        opacity: `${currentIndex+ 1 == itemIndex  ? '1' : '0.5'}`, 
+                        }} />
+                      </a>
+                    );
                   })}
+
                 </SliderWrapper>
+                <PrevButton direction="prev"  onClick={() => handleSwipe(-1)}>
+                  <BsChevronLeft />
+                </PrevButton>
+                <NextButton direction="next" onClick={() => handleSwipe(1)}>
+                  <BsChevronRight/>
+                </NextButton>
               </SliderWrap>
             </InfoBottom>
           </Info>
@@ -84,6 +154,31 @@ const Hero = ({
   );
 };
 export default Hero;
+
+const fire = keyframes`
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+`
+
+const HeroBack = styled.div`
+  position:fixed
+  bottom:0;
+  z-index:1;
+  width:100%;
+  height:100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(253,166,58,0.3) 90%,
+    rgba(180,46,10,1.0) 100%,
+    ), 
+    linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 0%);
+    animation: ${fire} 1s infinite;
+`
 
 const Container = styled.div`
   height: 100%;
@@ -103,7 +198,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
-  background: #040404;
   scroll-snap-align: start;
   display: flex;
   position: relative;
@@ -119,8 +213,8 @@ const Img = styled.img`
 
 const HeroName = styled.div`
   position: absolute;
-  z-index: 1;
-  bottom: 0px;
+  z-index: 2;
+  bottom: 50px;
   left: 38px;
   color: white;
   font-size: 52px;
@@ -180,7 +274,7 @@ const InfoBackground = styled.div`
   background-position-y: -150px;
   z-index: 999;
   width: 100%;
-  height: 65%;
+  height: 64%;
   background-size: cover;
   padding: 100px;
   position: relative;
@@ -225,14 +319,15 @@ const InfoImg = styled.img`
 `;
 
 const InfoBottom = styled.div`
-  height: 35%;
+  height: 36%;
   width: 100%;
   display: flex;
   position: relative;
+  box-sizing: border-box;
 `;
 
 const InfoMark = styled.div`
-  width: 25%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,17 +342,51 @@ const InfoImgMark = styled.img`
 `;
 
 const SliderWrap = styled.div`
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
+  width: 80%;
+  position: relative;
+  overflow:hidden;
+  margin:20px 0 20px 0;
+
 `;
 
 const Imgs = styled.img`
-  transform: scale(${(props) => (props.index === 1 ? 1.0 : 1.0)});
-  opacity: ${(props) => (props.index === 1 ? 1 : 0.4)};
+  width:550px;
+  padding: 10px 16px;
 `;
 
 const SliderWrapper = styled.div`
-  white-space: nowrap;
-  width:100%;
+position:relative;
+width: auto;
+white-space: nowrap;
+transition:0.3s;
+position: relative;
+top: 0;
+display: flex;
+flex-direction: row;
+text-align: left;
+left:-51%;
 `;
+
+const PrevButton = styled.button`
+  position:absolute;
+  top:53%;
+  transform: translate(0,-50%);
+  left:10px;  
+  background:none;
+  font-size:80px;
+  border:none;
+  color:white;
+  cursor:pointer;
+`
+
+const NextButton = styled.button`
+  position:absolute;
+  right:10px; 
+  top:53%;
+  transform: translate(0,-50%);
+  background:none;
+  font-size:80px;
+  border:none;
+  color:white;
+  cursor:pointer;
+`

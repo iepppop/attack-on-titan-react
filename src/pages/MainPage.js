@@ -2,6 +2,7 @@ import Hero from "../components/Hero";
 import Main from "../components/Main";
 import styled from 'styled-components';
 import { eren, mikasa, levi, armin, reiner } from '../components/HeroData';
+import Supporting from "../components/Supporting";
 
 
 const MainPage = () => {
@@ -15,7 +16,7 @@ const MainPage = () => {
     <Hero {...mikasa}/>
     <Hero {...reiner}/>
     </HeroWrap>
-    
+    <Supporting />
     </>
   )
 }
