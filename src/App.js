@@ -3,7 +3,6 @@ import './App.css';
 import styled from 'styled-components';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MainPage from './pages/MainPage';
-import Levi from './pages/Levi';
 
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
       <BrowserRouter>
       <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/levi" element={<Levi />} />
     </Routes>
     </BrowserRouter>
     </Container>
