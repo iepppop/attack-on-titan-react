@@ -1,42 +1,95 @@
 import Hero from "../components/Hero";
 import Main from "../components/Main";
-import styled from 'styled-components';
 import { eren, mikasa, levi, armin, reiner } from '../components/HeroData';
-import Supporting from "../components/Supporting";
-import SupportingPage from "./SupportingPage";
-
+import Supporting from '../components/Supporting';
+import { useEffect, useRef } from "react";
+import styled, { keyframes } from "styled-components";
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const MainPage = () => {
+  
+  const outerDivRef = useRef();
+  useEffect(() => {
+    const wheelHandler = (e) => {
+      e.preventDefault();
+      const { deltaY } = e;
+      const { scrollTop } = outerDivRef.current;
+      const pageHeight = window.innerHeight;
+   
+      if(deltaY > 0){
+        if(scrollTop >= 0 && scrollTop < pageHeight){
+          outerDivRef.current.scrollTo({
+            top:pageHeight,
+            left:0,
+            behavior:'smooth',
+          });
+        } else if( scrollTop >= pageHeight && scrollTop < pageHeight * 2){
+         outerDivRef.current.scrollTo({
+           top:pageHeight * 2,
+           left:0,
+           behavior:'smooth',
+         });
+        }else{
+          outerDivRef.current.scrollTo({
+            top:pageHeight * 3,
+            left:0,
+            behavior:'smooth',
+          });
+        }
+      }else{
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        }else{
+          outerDivRef.current.scrollTo({
+            top: pageHeight,
+            left:0,
+            behavior:"smooth",
+          });
+        }
+      }
+    };
+    const outerDivRefCurrent = outerDivRef.current;
+    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+    return () => {
+      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
+
   return (
-      <>
-    <Main />
-    <HeroWrap>
-    <Hero {...levi} />
-    <Hero {...armin} />
-    <Hero {...eren}/>
-    <Hero {...mikasa}/>
-    <Hero {...reiner}/>
-    </HeroWrap>
-    <SupportingWrap >
-    <Supporting />
-    </SupportingWrap>
-    </>
+    <Contain ref={outerDivRef}>
+     <Main />
+      <HeroWrap >
+        <Hero {...levi} />
+        <Hero {...armin} />
+        <Hero {...eren} />
+        <Hero {...mikasa} />
+        <Hero {...reiner} />
+      </HeroWrap>
+      <Supporting  />
+    </Contain>
   )
 }
 export default MainPage;
+
+const Contain = styled.div`
+  height:100vh;
+  overflow-y: auto;
+  position:relative;
+`
 
 const HeroWrap = styled.div`
   display:flex;
   width:100%;
   box-sizing: border-box;
   position:relative;
-`
-
-const SupportingWrap = styled.div`
-  height:100%;
-  width:100%;
-  scroll-snap-align: start;
-  background:url('https://blog.kakaocdn.net/dn/TznwK/btryKQwh70O/tfXHhXVRUaoNSfsVGtbRbk/img.jpg') no-repeat;
-  background-size: cover;
-  background-blend-mode: screen;
 `

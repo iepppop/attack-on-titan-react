@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import { NavLink } from "react-router-dom";
-import React, { useState, useRef, useEffect } from "react";
-import { BsChevronLeft,BsChevronRight } from "react-icons/bs";
+import React, { useState, useRef } from "react";
+import { BsChevronLeft,BsChevronRight, BsX } from "react-icons/bs";
 
 const Hero = ({
   img,
@@ -34,20 +33,17 @@ const Hero = ({
   const transitionStyle = `transform ${transitionTime}ms ease 0s`;
   const [slideTransition, setTransition] = useState(transitionStyle);
 
-
-
   function setSlides() {
     let addedFront = [];
     let addedLast = [];
     var index = 0;
-    while (index < 2) {
+    while (index < 3) {
       addedLast.push(videoImg[index % videoImg.length])
       addedFront.unshift(videoImg[videoImg.length - 1 - index % videoImg.length])
       index++;
     }
     return [...addedFront, ...videoImg, ...addedLast];
   }
-
 
   let slides = setSlides();
 
@@ -94,10 +90,13 @@ const Hero = ({
             <HeroP>{name2}</HeroP>
             <Koreaname style={{ background: color }}>{korean}</Koreaname>
           </HeroName>
-          <HeroBack />
+          <Gradient/>
         </Wrapper>
         <InfoWrap isOpen={isOpen}>
           <Info>
+            <XIcon onClick={toggle} isOpen={!isOpen}>
+            <BsX/>
+            </XIcon>
             <InfoBackground>
               <Name>
                 <Nameh1>
@@ -108,7 +107,7 @@ const Hero = ({
               </Name>
               <InfoImg
                 src={infoimg}
-                width={1500}
+                width={1400}
                 onClick={toggle}
                 isOpen={!isOpen}
               />
@@ -122,7 +121,9 @@ const Hero = ({
               <SliderWrap>
                 <SliderWrapper
                   ref={sliderRef} style={{
-                    transform: `translateX(${(-100 / slides.length  ) * (0.5 + currentIndex)}%)`,
+                    
+                    transform: `translateX(${-550 * currentIndex + 250}px)`,
+                    // transform: `translateX(${(-100 / slides.length  ) * (0.5 + currentIndex)}%)`,
                     transition: slideTransition
                     // ,opacity:`${currentIndex ?  '1' : '0.5'}`
                   }}>
@@ -132,7 +133,9 @@ const Hero = ({
                       <a>
                       <Imgs src={slides[itemIndex]} alt={`banner${itemIndex}`} 
                       style={{ 
-                        opacity: `${currentIndex+ 1 == itemIndex  ? '1' : '0.5'}`, 
+                        opacity: `${currentIndex + 3 === index || currentIndex + 4 === index
+                          ? '1'
+                          : '0.5'}`, 
                         }} />
                       </a>
                     );
@@ -155,39 +158,17 @@ const Hero = ({
 };
 export default Hero;
 
-const fire = keyframes`
-  from{
-    opacity:0;
-  }
-  to{
-    opacity:1;
-  }
-`
-
-const HeroBack = styled.div`
-  position:fixed
-  bottom:0;
-  z-index:1;
-  width:100%;
-  height:100%;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(253,166,58,0.3) 90%,
-    rgba(180,46,10,1.0) 100%,
-    ), 
-    linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 0%);
-    animation: ${fire} 1s infinite;
-`
-
 const Container = styled.div`
   height: 100%;
-  background: #040404;
-  scroll-snap-align: start;
+  background: #020202;
   display: flex;
   width: 20%;
-  cursor: pointer;
+  cursor: pointer;  
   border-right: 1px solid #272727;
+
+  &>*:nth-child(4){
+    border:none;
+}
 
   &:hover Img {
     filter: grayscale(0%);
@@ -198,17 +179,19 @@ const Container = styled.div`
 const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
-  scroll-snap-align: start;
   display: flex;
   position: relative;
   overflow: hidden;
+  background: #020202;
 `;
 
 const Img = styled.img`
   height: 100%;
   position: absolute;
-  margin-left: -50px;
+  margin-left: -70px;
   filter: grayscale(100%);
+  width:auto;
+  z-index:0;
 `;
 
 const HeroName = styled.div`
@@ -227,6 +210,19 @@ const HeroName = styled.div`
     transition: 0.4s ease-in-out;
   }
 `;
+
+const Gradient = styled.div`
+  width:100%;
+  height:100%;
+  position:relative;
+  z-index:1;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 60%,
+    rgba(2,2,2,1.0) 98%
+    );
+`
 
 const HeroP = styled.div`
   margin-top: -30px;
@@ -254,6 +250,18 @@ const InfoWrap = styled.div`
   flex-direction: column;
   display: flex;
 `;
+
+const XIcon = styled.div`
+    position:absolute;
+    right:6px;
+    top:6px;
+    width: ${({ isOpen }) => (isOpen ? "0" : "auto")};
+    z-index: -1;
+    opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
+    font-size:110px;
+    z-index:999999;
+    cursor:pointer;
+`
 
 const Info = styled.div`
   // position: fixed;
@@ -308,14 +316,25 @@ const Content = styled.div`
   line-height: 180%;
 `;
 
+const fadein = keyframes`
+    0%{
+      opacity:0;
+    }
+    100%{
+      opacity:1;
+    }
+`
+
 const InfoImg = styled.img`
   position: absolute;
   height: auto;
   right: -100px;
   top: -300px;
-  width: ${({ isOpen }) => (isOpen ? "0" : "80%")};
-  transtion: 0.3s ease-in-out;
+  width: ${({ isOpen }) => (isOpen ? "0" : "auto")};
+  transition: all 2s;
   z-index: -1;
+  opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
+  transtion: 4s ease;
 `;
 
 const InfoBottom = styled.div`
@@ -364,7 +383,7 @@ top: 0;
 display: flex;
 flex-direction: row;
 text-align: left;
-left:-51%;
+left:-109.5%;
 `;
 
 const PrevButton = styled.button`

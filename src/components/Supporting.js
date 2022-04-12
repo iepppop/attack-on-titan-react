@@ -1,27 +1,45 @@
-import styled from 'styled-components';
+
+import styled, { keyframes } from 'styled-components';
+import { jean, connie, sasha, hange, historia, zeke, yelena, gabi, falco } from './SupportingData';
+import SupportingOption from './SupportingOption';
 
 const Supporting = () => {
   return (
-    <Container>
+    <Container>  
       <Wrapper>
+       
         <HeroOption>
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
-       <Img src="https://blog.kakaocdn.net/dn/csfkPq/btryMZGLf3Q/kosbfG4qsEuarW9okptyQK/img.jpg" alt="name" />
+          <One>
+       <SupportingOption {...jean} />
+       <SupportingOption {...connie} />
+       <SupportingOption {...sasha} />
+       <SupportingOption {...hange} />
+       <SupportingOption {...zeke} />
+       <SupportingOption {...gabi} />
+       <SupportingOption {...falco} />
+       <SupportingOption {...yelena} />
+       <SupportingOption {...historia} />
+       </One>
        </HeroOption>
+       <FireWrapper />
       </Wrapper>
+ 
+
     </Container>
   )
 }
 export default Supporting;
 
-const Container = styled.div`
-width:100%;
-height:100%;
+const One = styled.div`
+  display:flex;
 `
+
+const Container = styled.div`
+  width:100%;
+  height:100%;
+  background-image: url("https://blog.kakaocdn.net/dn/6CR6f/btry7uf9KaR/X9L40hH1JQKRFeb7WdvzK1/img.gif");
+  background-size: cover;
+  ` 
 
 const Wrapper = styled.div`
   position:relative;
@@ -30,8 +48,8 @@ const Wrapper = styled.div`
   height:100%;
   background: linear-gradient(
     360deg,
-    rgba(4,4,4,0.2) 0%,
-    rgba(4,4,4,0.7) 90%,
+    rgba(4,4,4,0.2) 50%,
+    rgba(4,4,4,0.2) 90%,
     rgba(4,4,4,1.0) 100%
     ), 
     linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
@@ -40,17 +58,40 @@ const Wrapper = styled.div`
     background-repeat:no-repeat;
 `
 
-const HeroOption = styled.div`
-    width:60%;
+const boxFade = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const FireWrapper = styled.div`
+  position:absolute;
+  z-index:2;
+  width:100%;
+  height:100%;
+  left:0;
+  background: linear-gradient(
+    360deg,
+
+    rgba(255,142,44,0.2) 5%,
+    rgba(4,4,4,0) 25%
+    ), 
+    linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
     display:flex;
+    color:white;
+    background-repeat:no-repeat;
+    animation: ${boxFade} 2s linear infinite
+`
+
+const HeroOption = styled.div`
+    width:100%;
+    display:flex;
+    align-items:end;
     justify-content:center;
-    align-items:center;
-    border:3px solid red;
 `
-
-const Img = styled.img`
-  width:60px;
-  height:60px;
-  object-fit: cover;
-`
-
