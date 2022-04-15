@@ -123,9 +123,7 @@ const Hero = ({
                   ref={sliderRef} style={{
                     
                     transform: `translateX(${-550 * currentIndex + 250}px)`,
-                    // transform: `translateX(${(-100 / slides.length  ) * (0.5 + currentIndex)}%)`,
                     transition: slideTransition
-                    // ,opacity:`${currentIndex ?  '1' : '0.5'}`
                   }}>
                   {slides.map((video, index) => {
                     const itemIndex = getItemIndex(index);

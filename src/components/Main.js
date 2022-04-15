@@ -35,7 +35,6 @@ const Container = styled.div`
     position: relative;
     height: 100vh;
     width:100%;
-    overflow: hidden;
 `
 
 const VideoBg = styled.video`

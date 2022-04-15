@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const SupportingOption = ({
@@ -10,52 +10,101 @@ const SupportingOption = ({
   korean,
   desc,
   region,
+  color
 }) => {
   const [isListHover, setIsListHover] = useState(false);
+  const [characterPick, setCharacterPick] = useState(false);
+
+  const ref = useRef();
+
+
+  useEffect(() =>{
+      if(setIsListHover === (false) && ref.currnet.alt === "jean kirstein"){
+     
+          setIsListHover(true);
+    
+      }
+  },[]);
+
+  // useEffect(() => {
+  //   const handleMouseOn = () => {
+  //     setCharacterPick(false);
+  //     setIsListHover(true);
+  //   }
+  //   const handleMouseOut = () => {
+  //     setCharacterPick(true);
+  //     setIsListHover(false);
+  //   }
+  // },[])
+
+  const handleMouseOn = () => {
+    setIsListHover(true);
+  }
+  const handleMouseOut = () => {
+    setIsListHover(false);
+  }
+
+  // useEffect(()=>{
+  //   if(setIsListHover(true)){
+  //     setCharacterPick(false);
+  //   }else{
+  //     setCharacterPick(true);
+  //   }
+  // },[]);
+
+
+
+
 
   return (
     <Container>
-
+         <Charater setCharacterPick={setCharacterPick}
+         style={{ opacity: `${characterPick ? "1" : "0"}` }}>
+        fffasfffffffffffffffffffffffffffffffffffffffffff
+      </Charater>
       <Info style={{ opacity: `${isListHover ? "1" : "0"}` }}>
+
         <Profilewrap >
           <Name>{name}</Name>
           <ImgBorder>
             <MainImg
-              //src={isListHover ? `${mainImg}` : null }
               src={mainImg}
               alt=""
             />
-                  <LeftButton>
-        <BsChevronLeft />
-      </LeftButton>
-      <RightButton>
-        <BsChevronRight />
-      </RightButton>
           </ImgBorder>
         </Profilewrap>
         <DescName>
-  
+          <KoreanName>
+            <h2>{korean}</h2>
+          </KoreanName>
           <Desc>
             <h1>{region}</h1>
             <span>{desc}</span>
           </Desc>
-          <KoreanName>
-            <h2>{korean}</h2>
-          </KoreanName>
         </DescName>
       </Info>
       <ImgWrap>
         <Img
+          ref={ref}
           src={profileImg}
-          alt={korean}
-          onMouseOver={() => setIsListHover(true)}
-          onMouseOut={() => setIsListHover(false)}
+          alt={name}
+          onMouseOver={handleMouseOn}
+          onMouseOut={handleMouseOut}
         />
       </ImgWrap>
     </Container>
   );
 };
 export default SupportingOption;
+
+const Charater = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 999;
+  border:3px solid blue;
+`;
 
 const LeftButton = styled.button`
   position: absolute;
@@ -77,7 +126,8 @@ const RightButton = styled.button`
   right: 20%;
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+`;
 
 const Info = styled.div`
   color: #fff;
@@ -89,7 +139,7 @@ const Info = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 100px;
+  font-size: 140px;
   padding: 2px 15px;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
@@ -98,6 +148,9 @@ const Name = styled.div`
   justify-content: center;
   margin-bottom: -10px;
   opacity: 0.2;
+  line-height:90%;
+  width:400px;
+  margin:0 auto;
 `;
 
 const Profilewrap = styled.div`
@@ -105,6 +158,7 @@ const Profilewrap = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  height:100%;
   margin: 90px 0 0 0;
   text-align: center;
 `;
@@ -143,30 +197,41 @@ const MainImg = styled.img`
 `;
 
 const ImgBorder = styled.div`
-  border-radius: 30px;
-  width: 700px;
-  height:400px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
+  // border-radius: 30px;
+  // width: 700px;
+  // height:400px;
+  // overflow: hidden;
+  // display: flex;
+  // justify-content: center;
+  // margin: 0 auto;
+  position:absolute;
+  top:100px;
+  left:50%;
+  transform: translate(-50%,0);
+  z-index:0;
 `;
 
 const DescName = styled.div`
-  width: 700px;
+  width: 600px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  height:420px;
+  margin-top:auto;
+  
 `;
 
 const Desc = styled.div`
-  width: 66%;
-  margin: 40px 0 0 20px;
+  width: 100%;
+  margin: 0 0 0 20px;
   display: flex;
   flex-direction:column;
+  z-index:1;
+
   h1 {
     font-weight: 500;
     font-size: 16px;
-    margin: 0 0 5px 0;
+    margin: 20px 0 5px 0;
   }
   & span{
       display:block;
@@ -175,15 +240,11 @@ const Desc = styled.div`
 `;
 
 const KoreanName = styled.div`
-  display: inline-block;
-  width: 34%;
-  display: flex;
-  align-items: start;
-  margin: 40px 0 0 0;
-
+  margin-top:auto;
+  padding:0 0 0 10px;
   & h2 {
-    background: #4d3838;
-    font-size: 30px;
+    font-size: 25px;
     padding: 5px 10px;
+    display:inline-block;
   }
 `;

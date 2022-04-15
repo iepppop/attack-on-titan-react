@@ -1,6 +1,6 @@
 
 import styled, { keyframes } from 'styled-components';
-import { jean, connie, sasha, hange, historia, zeke, yelena, gabi, falco } from './SupportingData';
+import { jean, connie, sasha, hange, historia, zeke, yelena, gabi, falco,  pieck, porco, colt} from './SupportingData';
 import SupportingOption from './SupportingOption';
 
 const Supporting = () => {
@@ -12,13 +12,14 @@ const Supporting = () => {
           <One>
        <SupportingOption {...jean} />
        <SupportingOption {...connie} />
-       <SupportingOption {...sasha} />
        <SupportingOption {...hange} />
+       <SupportingOption {...historia} />
        <SupportingOption {...zeke} />
        <SupportingOption {...gabi} />
        <SupportingOption {...falco} />
-       <SupportingOption {...yelena} />
-       <SupportingOption {...historia} />
+       <SupportingOption {... pieck} />
+       <SupportingOption {... porco} />
+       <SupportingOption {... colt} />
        </One>
        </HeroOption>
        <FireWrapper />
@@ -39,6 +40,8 @@ const Container = styled.div`
   height:100%;
   background-image: url("https://blog.kakaocdn.net/dn/6CR6f/btry7uf9KaR/X9L40hH1JQKRFeb7WdvzK1/img.gif");
   background-size: cover;
+  position:relative;
+  z-index:1;
   ` 
 
 const Wrapper = styled.div`
@@ -48,7 +51,8 @@ const Wrapper = styled.div`
   height:100%;
   background: linear-gradient(
     360deg,
-    rgba(4,4,4,0.2) 50%,
+    rgba(4,4,4,0.9) 10%,
+    transparent 50%,
     rgba(4,4,4,0.2) 90%,
     rgba(4,4,4,1.0) 100%
     ), 
