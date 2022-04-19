@@ -10,60 +10,14 @@ const SupportingOption = ({
   korean,
   desc,
   region,
-  color
+  color,
+  heroOption
 }) => {
   const [isListHover, setIsListHover] = useState(false);
-  const [characterPick, setCharacterPick] = useState(false);
-
-  const ref = useRef();
-
-
-  useEffect(() =>{
-      if(setIsListHover === (false) && ref.currnet.alt === "jean kirstein"){
-     
-          setIsListHover(true);
-    
-      }
-  },[]);
-
-  // useEffect(() => {
-  //   const handleMouseOn = () => {
-  //     setCharacterPick(false);
-  //     setIsListHover(true);
-  //   }
-  //   const handleMouseOut = () => {
-  //     setCharacterPick(true);
-  //     setIsListHover(false);
-  //   }
-  // },[])
-
-  const handleMouseOn = () => {
-    setIsListHover(true);
-  }
-  const handleMouseOut = () => {
-    setIsListHover(false);
-  }
-
-  // useEffect(()=>{
-  //   if(setIsListHover(true)){
-  //     setCharacterPick(false);
-  //   }else{
-  //     setCharacterPick(true);
-  //   }
-  // },[]);
-
-
-
-
 
   return (
     <Container>
-         <Charater setCharacterPick={setCharacterPick}
-         style={{ opacity: `${characterPick ? "1" : "0"}` }}>
-        fffasfffffffffffffffffffffffffffffffffffffffffff
-      </Charater>
-      <Info style={{ opacity: `${isListHover ? "1" : "0"}` }}>
-
+      <Info show={isListHover}>
         <Profilewrap >
           <Name>{name}</Name>
           <ImgBorder>
@@ -83,13 +37,13 @@ const SupportingOption = ({
           </Desc>
         </DescName>
       </Info>
-      <ImgWrap>
+      <ImgWrap
+        onMouseOver={()=>setIsListHover(true)}
+        onMouseOut={()=>setIsListHover(false)}
+        >
         <Img
-          ref={ref}
           src={profileImg}
           alt={name}
-          onMouseOver={handleMouseOn}
-          onMouseOut={handleMouseOut}
         />
       </ImgWrap>
     </Container>
@@ -99,31 +53,11 @@ export default SupportingOption;
 
 const Charater = styled.div`
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 999;
-  border:3px solid blue;
-`;
-
-const LeftButton = styled.button`
-  position: absolute;
-  top: 40%;
-  border: none;
-  background: none;
-  font-size: 60px;
-  color: white;
-  left: 20%;
-`;
-
-const RightButton = styled.button`
-  position: absolute;
-  top: 40%;
-  border: none;
-  background: none;
-  font-size: 60px;
-  color: white;
-  right: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: ${props => props.show ? "0" : "1"};
 `;
 
 const Container = styled.div`
@@ -136,19 +70,20 @@ const Info = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 99;
+  opacity: ${props => props.show ? "1" : "0"};
 `;
 
 const Name = styled.div`
-  font-size: 140px;
   padding: 2px 15px;
+  font-size: 140px;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
   text-transform: uppercase;
+  line-height:90%;
   display: flex;
   justify-content: center;
   margin-bottom: -10px;
   opacity: 0.2;
-  line-height:90%;
   width:400px;
   margin:0 auto;
 `;
@@ -164,17 +99,16 @@ const Profilewrap = styled.div`
 `;
 
 const ImgWrap = styled.div`
-  margin: 0 2px 70px ;
+  margin: 0 0 70px ;
   position: relative;
   z-index: 99;
   transform: skewX(-8deg) scale(0.9);
   transition: transform 0.1s, background-color 0.6s;
-  padding:50px 0 0 0;
   &:hover {
     transform: skewX(-8deg) scale(1);
     z-index: 10;
   }
-  
+  padding:0 2px;
 `;
 
 const Img = styled.img`
@@ -197,13 +131,6 @@ const MainImg = styled.img`
 `;
 
 const ImgBorder = styled.div`
-  // border-radius: 30px;
-  // width: 700px;
-  // height:400px;
-  // overflow: hidden;
-  // display: flex;
-  // justify-content: center;
-  // margin: 0 auto;
   position:absolute;
   top:100px;
   left:50%;
@@ -218,12 +145,10 @@ const DescName = styled.div`
   flex-direction: column;
   height:420px;
   margin-top:auto;
-  
 `;
 
 const Desc = styled.div`
   width: 100%;
-  margin: 0 0 0 20px;
   display: flex;
   flex-direction:column;
   z-index:1;
@@ -231,7 +156,7 @@ const Desc = styled.div`
   h1 {
     font-weight: 500;
     font-size: 16px;
-    margin: 20px 0 5px 0;
+    margin: 10px 0 5px 0;
   }
   & span{
       display:block;
@@ -241,10 +166,9 @@ const Desc = styled.div`
 
 const KoreanName = styled.div`
   margin-top:auto;
-  padding:0 0 0 10px;
   & h2 {
     font-size: 25px;
-    padding: 5px 10px;
+    padding: 5px 0;
     display:inline-block;
   }
 `;
