@@ -25,7 +25,7 @@ const Keyword = ({ scrollNav }) => {
   };
 
   useEffect(() => {
-    slideRef.current.style.transition = "all 0.5s ease-in-out";
+    slideRef.current.style.transition = "all 0.3s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 
@@ -127,11 +127,15 @@ const Container = styled.div`
 
     & h1{
       font-family: "Poppins", sans-serif;
-      padding:60px 0 0 0;
-      font-size:110px;
+      padding:94px 0 40px 0;
+      font-size: 120px;
       opacity:0.2;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height:90%;
       position:relative;
       z-index:1;
+      letter-spacing:10;
   } 
 `
 
@@ -142,8 +146,8 @@ const Animation = styled.div`
 
 const KeywordWrap = styled.div`
   max-width:900px;
-  height:680px;
-  background:rgba(2,2,2,0.9);
+  height:660px;
+  background:rgba(0,0,0,0.9);
   margin:0 auto;
   margin-top:-10px;
   position:relative;
@@ -164,7 +168,7 @@ const KeywordWrap = styled.div`
   & span{
     text-align:left;
     display:block;
-    margin:20px 0 0 0;
+    margin:22px 0 -10px 0;
     line-height:180%;
   }
 `

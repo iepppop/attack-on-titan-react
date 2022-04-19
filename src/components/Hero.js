@@ -110,6 +110,7 @@ const Hero = ({
                 width={1400}
                 onClick={toggle}
                 isOpen={!isOpen}
+                delay={20}
               />
             </InfoBackground>
             <InfoBottom>
