@@ -1,193 +1,320 @@
+
 import styled from 'styled-components';
-import Anchor from './Anchor';
+import { VscArrowLeft, VscArrowRight } from 'react-icons/vsc';
 import React, { useState, useEffect, useRef } from 'react';
-import { BsChevronLeft, BsChevronRight, BsX } from "react-icons/bs";
 
-const Keyword = ({ scrollNav }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideRef = useRef(0);
-  const TOTAL_SLIDES = 1;
+const Keyword = () => {
 
-  const moveRight = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setCurrentSlide(0);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const ref = useRef(null);
+  const total_slide = 2;
+
+  const NextSlide = () => {
+    if (slideIndex >= total_slide) {
+      setSlideIndex(0);
     } else {
-      setCurrentSlide(currentSlide + 1);
+      setSlideIndex(slideIndex + 1);
     }
-  };
+  }
 
-  const moveLeft = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
+  const PrevSlide = () => {
+    if (slideIndex >= total_slide) {
+      setSlideIndex(0);
     } else {
-      setCurrentSlide(currentSlide - 1);
+      setSlideIndex(slideIndex + 1);
     }
-  };
+  }
 
   useEffect(() => {
-    slideRef.current.style.transition = "all 0.3s ease-in-out";
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
+    ref.current.style.transform = `translateX(-${slideIndex}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
+  }, [slideIndex]);
 
 
   return (
     <Container>
-      <Animation scrollNav={scrollNav}>
-        <Anchor />
-      </Animation >
-      <KeywordBtnLeft onClick={moveLeft}><BsChevronLeft /></KeywordBtnLeft>
-      <KeywordBtnRight onClick={moveRight}><BsChevronRight /></KeywordBtnRight>
-      <h1>KEYWORD</h1>
-      <KeywordWrap>
-        <KeywordWrapperContain ref={slideRef}>
-          <KeywordContain>
-            <KeywordWrapper >
-              <h2>
-                에르디아 제국
-              </h2>
+      <AllWrap ref={ref}>
+        <SemiWrap>
+          <Wrap>
+            <ImgWrap>
+              <img src="https://blog.kakaocdn.net/dn/cgv5V2/btrz48caKej/bas9vJBvF5BcWShaYbDbG1/img.jpg" />
+            </ImgWrap>
+            <Sub>
+              <h1>에르디아 제국</h1>
+              <span>2천년 전, 지금의 에르디아가 되는 고대 부족의  프리츠라는 족장은 우연히 자신의 노예 유미르가
+                힘을 손에 넣은 것을 보고 야심을 드러냈다. 그 야심으로 인해 프리츠는 유미르를 이용해 마레에게
+                반역하고 제국을 세운다. 그리고 그녀와의 사이에서 딸들을 낳게 된다. 이 유미르라는 여자는
+                대지의 악마와 계약하여 최초로 거인이 된 인간이다.</span>
+            </Sub>
+          </Wrap>
+          <Wrap>
+            <ImgWrap2>
               <span>
-                2천년 전, 지금의 에르디아가 되는 고대 부족의 프리츠라는 족장은 우연히 자신의 노예 유미르가 힘을 손에 넣은 것을 보고 야심을 드러냈다. 그 야심으로 인해 프리츠는 유미르를 이용해 마레에게 반역하고 제국을 세운다. 그리고 그녀와의 사이에서 딸들을 낳게 된다. 이 유미르라는 여자는 대지의 악마와 계약하여 최초로 거인이 된 인간이다.
+                <img src="https://blog.kakaocdn.net/dn/cdPmXs/btrz9hf3upu/koNKJ8187xPavTQKolYYhk/img.png" />
               </span>
-              <h2>
-                파라디 섬
-              </h2>
               <span>
-                약 100 년 전. 엘디아 제국은 아홉 명의 거인 중 일곱 명을 잃고 잃어버렸고, 마레는 위대한 세력이었다. 엘디아의 프리츠 왕은 파라디스 섬의 남은 땅에 삼중 벽을 쌓고 사람들과 함께 도망쳤다. 사람들은 엘렌과 다른 사람들의 조상이었고, 프리츠 왕의 '설립자의 거인'의 힘은 우리가 벽 밖의 인류가 파괴되었다고 믿게했다.
+                <img src="https://blog.kakaocdn.net/dn/cRag48/btrz9gVMNtw/mMQFUookOQj2vO2R9OXylk/img.png" />
               </span>
-              <h2>
-                아홉 거인
-              </h2>
               <span>
-                아홉 명의 거인 중 시즌 3은 설립자의 거인 여섯 명, 타이탄에 대한 공격, 슈퍼 대형 거인, 갑옷의 거인, 여성의 거인, 짐승의 거인으로 확인되었습니다. 현재로서는 유밀이 아홉 명의 거인들의 능력을 소유했는지는 알려져 있지 않다. 아홉 자이언츠의 후계자는 권력 승계 후 13년 만에 사망한다.
+                <img src="https://blog.kakaocdn.net/dn/biNRzL/btrAboLNiJZ/CPhLz1Rd5ERFBM5fynMRb0/img.png" />
               </span>
-            </KeywordWrapper>
-            <KeywordWrapper>
-              <h2>
-                전사
-              </h2>
+            </ImgWrap2>
+            <Sub2>
+              <h1>병단</h1>
               <span>
-                마레 정부는 수용소의 에르디아인으로부터 전사를 모집하고 일곱 거인을 물려받음으로써 마레의 군대를 만들었다. 전사가 된 사람들의 가족은 "명예 에르디아인"이라는 칭호를 받았으며 그 나라에서 자유를 보장받았다.
+                각 병단은 실질적으로 단장이 이끌고 있으며, 그 위에는 3개 병단을 통솔하는 총통인 다리스 작클레가 있다. 헌병단의 경우 월-시나 안에서 총통 등 유력자들과 밀접한 관계를 맺고 있지만, 월-시나 바깥의 주둔 병단은 주둔지를 동서남북 4구획으로 나누어, 각 구획의 사령관이 통솔하는 것으로 보인다.
+                <p>
+                  그리고, 왕정의 최측근 4인방에 속하는 왕정 군지휘관 제랄드가 총통인 다리스 작클레의 병단의 통솔력에 관해서는 우위에 있었던 것으로 보인다. 그러나, 조사병단의 쿠데타 이후 다리스가 병단의 실권을 손에 쥐었다.
+                </p>
+                <p>
+                  병단마다 규모가 크게 달라 헌병단 2000명, 조사병단 300명, 주둔병단 30000명으로 이루어져 있으며, 헌병단은 직속 주둔병단을 합해 실질 5000명 정도를 동원할 수 있다. 병단장들은 브로치 형태의 목걸이를 하고 있다.
+                </p>
               </span>
-              <h2>
-                파라다이스 보내기
-              </h2>
+            </Sub2>
+          </Wrap>
+          <Wrap>
+            <ImgWrap3>
+              <img src="https://blog.kakaocdn.net/dn/bsoDUx/btrAca7MEOs/sV9MjuK73ttKC7I56SkWc1/img.png" />
+            </ImgWrap3>
+            <Sub3>
+              <h1>땅 울림</h1>
               <span>
-                마레 정부는 에르디아 반군을 세상에 보내어 파라디스 섬에 있는 엘렌과 다른 사람들을 "파라다이스 보냄"이라고 불렀고, 그들을 지적인 "무고한 거인"으로 풀어 놓았다. 벽에서 인류를 공격하고 먹은 거인들은이 에르디아 반역자의 끝이다.
+              칼 프리츠가 시조의 거인의 힘으로 파라디 섬에서 방벽을 만들 때 타국의 침공을 막기 위해 수천만의 방벽 내부의 
+거인들을 일종의 상호확증파괴의 개념으로 방벽에 집어넣었는데, 고열의 증기를 내뿜는 이 거인들을 
+진격시켜서 전 세계의 모든 문명과 대륙을 짓밟아 파괴하여 평평한 토지로 만듦으로써 방벽 밖 모든 국가와 생물을 절멸시키는 행위이다.
               </span>
-              <h2>
-                마레 제국
-              </h2>
-              <span>
-                칼 프리츠는 시조의 거인과 일부 백성들과 다이나 프리츠의 조상들인 방계 왕가를 제외한 직계 왕가를 데리고 최후의 영토인 변방 파라디 섬으로 도주해 버렸고, 그 전에 미리 세워둔 세 개의 방벽 월 마리아, 월 시나, 월 로제 안에 가둔 초대형 거인들을 내세워 만일 우리의 평화를 방해하겠다면 수천만 마리의 거인들을 풀어놓아 세계를 고르게 만들어 버리겠노라고 협박을 남긴 뒤 은둔에 들어간다. 마레는 일곱 거인들을 재기의 원동력으로 삼아 1,820년 멸망당한 마레 제국을 부활시킨다.
-              </span>
-            </KeywordWrapper>
-          </KeywordContain>
-        </KeywordWrapperContain>
+            </Sub3>
+          </Wrap>
+        </SemiWrap>
+      </AllWrap>
+      <Border style={{ borderRight: `${slideIndex === 2 ? "none" : "1px solid rgba(255,255,255,0.3)"}` }}>
+      </Border>
+      <Border style={{ borderRight: `${slideIndex < 3 ? "none" : "1px solid rgba(255,255,255,0.3)"}` }}>
+      </Border>
+      <Border style={{ borderRight: `${slideIndex === 1 ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(255,255,255,0.3)"}` }}>
+      </Border>
+      <Border>
+        <KButton>
+          <KButtonPrev onClick={PrevSlide}>
+            <VscArrowLeft />
+          </KButtonPrev>
+          <KButtonNext onClick={NextSlide}>
+            <VscArrowRight />
+          </KButtonNext>
+        </KButton>
+      </Border>
 
-      </KeywordWrap>
+      <Border>
+        <Subtitle>
+          keyword
+        </Subtitle>
+
+      </Border>
     </Container>
   )
 }
 export default Keyword;
-const KeywordBtnRight = styled.button`
-cursor: pointer;
-position:absolute;
-z-index:9999;
-padding:20px;
-right:20%;
-top:50%;
-background:none;
-color:#fff;
-border:none;
-font-size:50px;
-`
-
-const KeywordBtnLeft = styled.button`
-cursor: pointer;
-position:absolute;
-z-index:9999;
-padding:20px;
-left:20%;
-top:50%;
-background:none;
-color:#fff;
-border:none;
-font-size:50px;
-`
 
 const Container = styled.div`
-    width:100%;
-    height:100%;
-    background-image:url('https://blog.kakaocdn.net/dn/crrvsO/btrzn8xGCsS/krvF6YnKkHkZPDaL2jTGG0/img.gif');
-    color:#fff;
-    position:relative;
-    z-index:-9999px;
-    text-align:center;
-
-
-    & h1{
-      font-family: "Poppins", sans-serif;
-      padding:94px 0 40px 0;
-      font-size: 120px;
-      opacity:0.2;
-      font-weight: 800;
-      text-transform: uppercase;
-      line-height:90%;
-      position:relative;
-      z-index:1;
-      letter-spacing:10;
-  } 
-`
-
-const Animation = styled.div`
-  transition: 4s ease;
-  transform: ${({ scrollNav }) => (scrollNav ? 'translateY(-200px)' : 'translateY(-1000px)')}
-`
-
-const KeywordWrap = styled.div`
-  max-width:900px;
-  height:660px;
-  background:rgba(0,0,0,0.9);
-  margin:0 auto;
-  margin-top:-10px;
+  height:100%;
+  background:#020202;
+  width:100%;
+  display: flex;
   position:relative;
-  box-sizing: border-box;
-  overflow-x:scroll;
+  font-family: 'Pretendard';
+  overflow:hidden;
+`
 
-  
-  & h2:first-child{
-    margin:0 0 0 0;
+const Border = styled.div`
+    width:25%;
+    height:100%;
+    border-right:1px solid  rgba(255,255,255,0.2);
+    text-transform:uppercase;
+    color:white;
+    position:relative;
+
+    &:nth-child(4){
   }
 
-  & h2{
-    text-align:left;
-    margin:40px 0 0 0;
-    font-size:30px; color:red; 
+    &:nth-child(3){
+    position:relative;
+    z-index:0;
+  }
+
+    &:nth-child(5){
+  }
+
+    &:last-child{
+     border-right:none;
+  }
+`
+
+const KButton = styled.div`
+    position:absolute;
+    bottom:0;
+    display:flex;
+    left:-120px;
+`
+
+const KButtonPrev = styled.button`
+  height:120px;
+  width: 120px;
+  background:#6b1319;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-size:20px;
+  border-right:1px solid rgba(255,255,255,0.2);
+`
+
+const KButtonNext = styled.button`
+  height:120px;
+  width: 120px;
+  display:flex;
+  background:#6b1319;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-size:20px;
+`
+
+const AllWrap = styled.div`
+    position:absolute;
+    width:100%;
+    height:100%;
+`
+
+const SemiWrap = styled.div`
+    width:300%;
+    display:flex;
+`
+
+const Wrap = styled.div`
+  width:100%;
+  position:relative;
+  z-index:1;
+`
+
+const ImgWrap = styled.div`
+    width:60%;
+    overflow: hidden;
+
+    & img{
+     object-fit: cover;
+     position:relative;
+     z-index:2;
+    }
+`
+
+const Sub = styled.div`
+    position:absolute;
+    bottom:220px;
+    left:770px;
+    color:white;
+    width:1000px;
+    display:flex;
+    z-index:2;
+    & h1{
+      width:600px;
+      font-weight:100;
+    }
+
+    & span{
+      line-height:180%;
+    }
+`
+
+const ImgWrap2 = styled.div`
+    width:60%;
+    overflow: hidden;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display:flex;
+    background:#020202;
+    height:100%;
+
+    & span{
+      width:33.33%;
+      margin:0 30px;
+    }
+
+    & img{
+      width:100%;
+      padding:20px;
+      margin:120px 0 0 0;
+    }
+`
+
+const Sub2 = styled.div`
+  position:absolute;
+  bottom:210px;
+  left:480px;
+  color:white;
+  width:940px;
+  display:flex;
+  z-index:2;
+  flex-direction: column;
+
+  & h1{
+    margin:0 0 30px 0;
+    font-weight:100;
   }
 
   & span{
-    text-align:left;
-    display:block;
-    margin:22px 0 -10px 0;
     line-height:180%;
+  }
+
+  & p{
+    margin:15px 0 0 0;
   }
 `
 
-const KeywordWrapperContain = styled.div`
-  left:0;
-  top:0;  
-  position:absolute;
-  width:100%;
+const Subtitle = styled.div`
+    bottom:46px;
+    right:60px;
+    position:absolute;
+    font-weight:800;
+    font-family: "Poppins", sans-serif;
+    font-size:30px;
+    z-index:999;
+    color:rgba(255,255,255,0.9);
 `
 
-const KeywordContain = styled.div`
-  width:200%;
+const ImgWrap3 = styled.div`
+    width:60%;
+    overflow: hidden; 
+    position:absolute;
+    right:0;
+    box-sizing: border-box;
+    display:flex;
+
+    & img{
+      width:100%;
+      margin:90px 0 0 0;
+    }
+`
+
+
+const Sub3 = styled.div`
   position:absolute;
+  bottom:250px;
+  left:180px;
+  color:white;
+  width:900px;
   display:flex;
-`
+  z-index:2;
+  flex-direction: column;
 
+  & h1{
+    margin:0 0 30px 0;
+    font-weight:100;
+  }
 
-const KeywordWrapper = styled.div`
-  width:100%;
-  padding:60px;
+  & span{
+    line-height:180%;
+  }
 `
