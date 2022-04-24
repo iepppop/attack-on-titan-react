@@ -176,7 +176,7 @@ const CharaterWrap = styled.div`
 const Bar = styled.div`
   position:fixed;
   right:58px;
-  z-index:9999;
+  z-index:997;
   color:#fff;
   top:50%;
   transform:translate(0,-50%);
