@@ -141,11 +141,11 @@ const Img = styled.img`
 const Border = styled.div`
     width:25%;
     height:100%;
-    border-right: 1px solid rgba(255,255,255,0.2);
+    border-right:1px solid  rgba(255,255,255,0.2);
     position:relative;
     text-transform:uppercase;
-    &:nth-child(4){
-        border-right:none;
+    &:nth-child(3){
+        border-right:1px solid  rgba(145,145,145,0.1);
     }
 
     &:nth-child(4){
@@ -158,6 +158,10 @@ const Border = styled.div`
 
     &:last-child{
         border-right:none;
+    }
+
+    &:first-child{
+        border-right:1px solid  rgba(145,145,145,0.1);
     }
 
     & h1{

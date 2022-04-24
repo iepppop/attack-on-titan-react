@@ -163,7 +163,7 @@ const Container = styled.div`
   display: flex;
   width: 20%;
   cursor: pointer;  
-  border-right: 1px solid rgba(255,255,255,0.2);
+  border-right:1px solid  rgba(255,255,255,0.2);
 
   &:last-child{
     border:none;
