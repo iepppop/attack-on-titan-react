@@ -193,5 +193,10 @@ const BarDot = styled.div`
   width:3px;
   height:25px;
   margin:0 0 0 10px;
-  margin-top:-1px;
+  margin-top:-1px;        
+  
+  @media screen and (max-height: 800px) {
+    height:15px;
+}
+
 `

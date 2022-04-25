@@ -38,7 +38,7 @@ const Box = styled.div`
     cursor:pointer;
     position:fixed;
     top:6.5%;
-    right:3%; 
+    right:58px;
     z-index:997;
     display: flex;
 

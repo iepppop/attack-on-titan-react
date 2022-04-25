@@ -3,11 +3,11 @@ export const eren = {
     alt:'eren',
     name:'EREN',
     name2:'YEAGER',
-    korean:'에렌 예거',
+    korean:'엘렌 예거',
     infoimg:'https://blog.kakaocdn.net/dn/v2Qoe/btrzaXbNtQo/BirZR2ANvvOBGYSPr6K3e1/img.png',
     color:'#415f57',
     mark:'https://blog.kakaocdn.net/dn/qdl88/btryrqZBPLh/pOH8khnKVNKlBMDTVQDdPK/img.png',
-    content:'어렸을 때부터 벽 밖의 세상을 갈망했다. 845년 이후, 거인의 침공으로 어머니를 잃었을 때, 그는 거인을 추방하겠다는 강한 열망을 가지고 104번째 훈련단에 합류했다. 3년간의 엄격한 훈련을 마친 후, 벽 밖을 갈망하고 거인에 대한 증오로 인해 그는 훈련단 초기부터 조사병단이 되고자 했다.',
+    content:'어렸을 때부터 벽 밖의 세상을 갈망했다. 845년 이후, 거인의 침공으로 어머니를 잃었을 때, 그는 거인을 추방하겠다는 강한 열망을 가지고 104번째 훈련단에 합류했다. 이후 트로스트 구에 뚫린 구멍을 바위로 막기 위한 긴급 작전에 투입되어 거인화하지만 거인의 신체를 컨트롤하지 못해 폭주해 버리고 만다. 그러나 아르민의 "거인의 몸 따위에 지면 안 돼!" 라는 절규와 자신이 방벽 밖을 동경하게 된 이유. 즉, 이 세상에 태어난 생명으로서의 자유를 떠올리고 거인의 몸을 지배하고 방벽의 구멍을 막는 성과를 올린다.',
     videos:
     'https://blog.kakaocdn.net/dn/rmxlK/btrywvUPdXp/G5fEkxoKZyv7LgxlI1KK11/img.png',
     videos2:
@@ -67,7 +67,7 @@ export const armin = {
     infoimg:'https://blog.kakaocdn.net/dn/BDSUc/btry8xEF1wQ/j5geK4QV9Sx6QaKR5ZqVXK/img.png',
     color:'#8a7448',
     mark:'https://blog.kakaocdn.net/dn/qdl88/btryrqZBPLh/pOH8khnKVNKlBMDTVQDdPK/img.png',
-    content:'시간차이나 지구에서 출생. 엘렌과 미카사의 어린 시절 친구이며 벽 밖에 강한 호기심을 자아내고 있다. 104훈련단에 합류한 그는 자신의 노력으로 신체적 불안을 만회하고 3년간의 엄격한 훈련을 견뎌냈다. 졸업성적이 상위는 아니였으나 우수한 분석 기술과 정확한 판단을 가지고 있으며, 점차적으로 재능을 보여준다.',
+    content:'엘런과 미사카는 어릴 적부터 알고 지낸 친구이다. 할아버지가 숨겨두었던 책을 통해 벽 바깥 세상을 알고는 신이 나 엘런에게 거대한 소금 호수와 불꽃 물, 모래 설원, 얼음 대지 등을 이야기함으로써 엘런이 바깥 세상에 대한 동경을 품게 한 장본인이다. 아르민 본인도 바깥을 동경하며, 엘런과 함께 바깥 세상을 여행하는 것이 꿈이다. 초대형 거인의 습격으로 고향을 잃은 후 미카사, 엘런과 함께 훈련병단에 지원한다.',
     videos:
     'https://blog.kakaocdn.net/dn/YtVBy/btryLG71eoY/YQbH0w5kuUlHZYJ0RHDVmk/img.png',
     videos2:

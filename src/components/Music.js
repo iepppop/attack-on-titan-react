@@ -43,16 +43,24 @@ const Music = () => {
                         return (
                             <MusicWrap key={index}>
                                 <Musics>
-                                    <MusicImg onClick={handleClick}>
-                                        <Cover>
-                                            <img src={music.img} />
-                                        </Cover>
-                                        <span style={{ 
-                                            animationPlayState: `${click ? 'running' : 'paused'}` 
-                                        }}>
-                                            <img src={music.cd} />
-                                        </span>
-                                    </MusicImg>
+                                    <MusicsWrap>
+                                        <MusicImg onClick={handleClick}>
+                                            <CoverWrap>
+                                                <Cover>
+                                                    <img src={music.img} />
+                                                </Cover>
+                                            </CoverWrap>
+                                            <CdWrap>
+                                                <Cd>
+                                                    <span>
+                                                <img src={music.cd}  style={{
+                                                        animationPlayState: `${click ? 'running' : 'paused'}`
+                                                    }}/>
+                                                </span>
+                                                </Cd>
+                                            </CdWrap>               
+                                        </MusicImg>
+                                    </MusicsWrap>
                                     <Title>
                                         <h1>
                                             {music.name}
@@ -96,8 +104,8 @@ const Music = () => {
                     })}
                 </PreviewNext>
                 <Subtitle>
-          music
-        </Subtitle>
+                    music
+                </Subtitle>
             </Border>
         </Container>
     )
@@ -110,6 +118,7 @@ const Container = styled.div`
     background:#020202;
     position:relative;
     display:flex;
+    overflow:hidden;
 `
 
 const MusicContainer = styled.div`
@@ -132,21 +141,30 @@ const MusicWrap = styled.div`
     height:100%;
     color:white;
     position:relative;
-
 `
 
 const Musics = styled.div`
     width:60%;
-    height:100vh;
-    margin:0 auto;
-    text-align:center;
+    height:100%;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+`
+
+const MusicsWrap = styled.div`
+    display:flex;
+    width:100%;
+    height:75%;
+    align-items: end;
+    position:relative;
+    justify-content:center;
 `
 
 const Title = styled.div`
-    position:absolute;
-    bottom:96px;
-    left:50%;
-    transform: translate(-50%,0);
+    width:100%;
+    height:25%;
+    text-align:center;
+    padding:30px;
 
     & h1{
     background:#6b1319;
@@ -160,7 +178,7 @@ const Title = styled.div`
     font-size:15px;
     font-weight:200;
     font-family: 'Pretendard';
-    margin:20px 0 0 0;
+    padding:20px 0;
 }
 `
 
@@ -173,40 +191,56 @@ const spin = keyframes`
 `
 
 const MusicImg = styled.div`
-    margin:0 auto;
-    padding:130px 0 0 0;
     position:relative;
     cursor:pointer;
+    height:85%;    
+    width:100%;
+`
 
-    & span{
-        position:absolute;
-        top:80%;
-        left:38%;
-        z-index:0;
-        transform:translate(-50%,0);
-        animation:${spin} 2.0s infinite linear;
-        padding:50px;
-    }
-
-         img{
-            width:550px;
-            height:550px;
-            object-fit:cover;
-        }
-    }
-
+const CoverWrap = styled.div`
+    width:66.66%;
+    display:flex;
+    justify-content:end;
+    height:100%;
+    position:absolute;
 `
 
 const Cover = styled.div`
-    position:absolute;
-    left:40.5%;
-    transform:translate(-50%,0);
-    z-index:99;
+    max-width:600px;
+    max-height:600px;
 
     & img{
-        width:600px;
-        height:600px;
+        max-width:100%;
+        max-height:100%;
         object-fit:cover;
+    }
+`
+
+const CdWrap = styled.div`
+    width:100%;
+    justify-content:end;
+    display:flex;
+    height:100%;
+    box-sizing: border-box;
+    position:relative;
+    z-index:-1;
+`
+
+const Cd = styled.div`
+    width:66.66%;
+    height:96%;
+    text-align: center;
+
+    & span{
+        min-width:550px;
+        min-height:550px;
+
+        img{
+        max-width:100%;
+        max-height:100%;
+        object-fit:cover;
+        animation: ${spin} 2s infinite linear; 
+        }
     }
 `
 
@@ -247,7 +281,7 @@ const Border = styled.div`
 const PrevButton = styled.div`
     position:absolute;
     right:30px;
-    top:50%;
+    top:45%;
     transform:translate(0,-50%);
     font-size:40px;
     cursor:pointer;
@@ -256,7 +290,7 @@ const PrevButton = styled.div`
 const NextButton = styled.div`
     position:absolute;
     left:30px;
-    top:50%;
+    top:45%;
     transform:translate(0,-50%);
     font-size:40px;
     cursor:pointer;

@@ -9,8 +9,9 @@ const Watch = () => {
 
     return (
         <Container>
+          <Grad />
             <Wrap>
-            <img src="https://blog.kakaocdn.net/dn/dyE2Sy/btrAeQb6sdS/gxPoNf1peAh18vhWZIKJ1K/img.png" />
+            <img src="https://blog.kakaocdn.net/dn/diwY6A/btrAh7xxibx/kpb7zklGfYeThCq8ctS1J1/img.png" />
             </Wrap>
             <WBackground>
                 <FireWrap>   
@@ -44,7 +45,10 @@ const Watch = () => {
                 </Content>
             </Border>
             <Border>
+                <Net>
+                    {/* <img src="https://blog.kakaocdn.net/dn/b9jYfZ/btrAmyAVytJ/VfFRkZ2sVOnqKXsSlX79KK/img.png" /> */}
 
+                    </Net>
             </Border>
             <Border>
 
@@ -52,7 +56,7 @@ const Watch = () => {
             <Border>
 
             </Border>
-
+        
         </Container>
     )
 }
@@ -61,18 +65,20 @@ export default Watch;
 const Wrap = styled.div`
     position:absolute;
     width:100%;
-    height:100%;
+    height:80%;
     overflow:hidden;
     left:0;
     bottom:0;
+    display:flex;
+    justify-content:center;
+    z-index:0;
 
     img{
-        margin-top:-150px;
-        margin-left:-200px;
-        position:absolute;
+        display:inline-block;
         z-index:0;
     }
 `
+
 
 const Container = styled.div`
     width:100%;
@@ -80,6 +86,19 @@ const Container = styled.div`
     background:#020202;
     display:flex;
     position:relative;
+    background:url('https://blog.kakaocdn.net/dn/bnU18a/btrAeIYEEmF/BcF5E3GHKhhSu8gAiisie0/img.jpg');
+    background-size: cover;
+`
+
+
+const Grad = styled.div`
+    width:100%;
+    height:100%;
+    background: linear-gradient(#020202 0%, rgba(2,2,2,0.4) 70% ,rgba(2,2,2,0.9) 90%);
+    position:absolute;
+    z-index:0;
+    left:0;
+    top:0;
 `
 
 const FireWrap = styled.div`
@@ -170,7 +189,7 @@ const Border = styled.div`
 
 const Content = styled.div`
     position:absolute;
-    bottom:60px;
+    top:80px;
     font-size:20px;
     font-family: "Poppins", sans-serif;
     line-height:170%;
@@ -184,5 +203,22 @@ const Content = styled.div`
     & h2{
         font-weight:100;
         font-family: 'Pretendard';
+        margin:20px 0 0 0;
+    }
+`
+
+const Net = styled.div`
+    position:absolute;
+    top:-10px;
+    width:100%;
+    text-align:center;
+
+    img:first-child{
+       margin-right:40px;
+    }
+
+    img {
+        padding:100px;
+        width:100%;
     }
 `

@@ -105,13 +105,11 @@ const Hero = ({
                 <Nameh2 style={{ background: color }}>{korean}</Nameh2>
                 <Content>{content}</Content>
               </Name>
-              <InfoImg
-                src={infoimg}
-                width={1400}
-                onClick={toggle}
-                isOpen={!isOpen}
-                delay={20}
-              />
+              <InfoImg delay={20} isOpen={!isOpen} onClick={toggle}> 
+              <InfoWidth>
+              <img src={infoimg} />
+              </InfoWidth>
+              </InfoImg>
             </InfoBackground>
             <InfoBottom>
               <InfoMark style={{ background: color }}>
@@ -187,10 +185,16 @@ const Wrapper = styled.div`
 const Img = styled.img`
   height: 100%;
   position: absolute;
-  margin-left: -70px;
   filter: grayscale(100%);
   width:auto;
   z-index:0;
+  object-fit: cover;
+  @media screen and (max-width: 1920px) {
+    margin-left:-50px;
+}
+
+
+
 `;
 
 const HeroName = styled.div`
@@ -263,16 +267,7 @@ const XIcon = styled.div`
 `
 
 const Info = styled.div`
-  // position: fixed;
-  // z-index: 998;
-  //width: 100%;
   height: 100%;
-  // background-image: url(./../images/bg.jpg);
-  // align-items: center;
-  // top:0;
-  // right:0;
-  // transition: 0.3s ease-in-out;
-  // color:white;
 `;
 
 const InfoBackground = styled.div`
@@ -283,13 +278,13 @@ const InfoBackground = styled.div`
   width: 100%;
   height: 64%;
   background-size: cover;
-  padding: 100px;
   position: relative;
   overflow: hidden;
 `;
 
 const Name = styled.div`
-  flex-direction: column;
+    height:100%;
+    padding:90px;
 `;
 
 const Nameh1 = styled.h1`
@@ -311,8 +306,9 @@ const Nameh2 = styled.div`
 
 const Content = styled.div`
   margin: 50px 0 0 20px;
-  width: 600px;
+  max-width: 700px;
   line-height: 180%;
+  font-family: 'Pretendard';
 `;
 
 const fadein = keyframes`
@@ -324,17 +320,29 @@ const fadein = keyframes`
     }
 `
 
-const InfoImg = styled.img`
+const InfoImg = styled.div`
   position: absolute;
-  height: auto;
-  right: -100px;
+  right:-100px;
   top: -300px;
   width: ${({ isOpen }) => (isOpen ? "0" : "auto")};
   transition: all 2s;
   z-index: -1;
   opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
   transtion: 4s ease;
+
+  @media screen and (max-width: 1615px) {
+    right:-400px;
+}
+
+@media screen and (max-width: 1310px) {
+  right:-490px;
+}
+
 `;
+
+const InfoWidth = styled.div`
+   
+`
 
 const InfoBottom = styled.div`
   height: 36%;
@@ -349,14 +357,26 @@ const InfoMark = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 1615px) {
+    width:30%;
+}
+
+@media screen and (max-width: 1310px) {
+  width:35%;
+}
+
 `;
 
 const MarkWrap = styled.div`
   width: 250px;
+  height: 250px;
+  padding:10px;
 `;
 
 const InfoImgMark = styled.img`
   width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
+
 `;
 
 const SliderWrap = styled.div`

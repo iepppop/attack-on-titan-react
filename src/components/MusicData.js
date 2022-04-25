@@ -14,7 +14,7 @@ export const musics = [
     {
         name: 'Helpless World',
         sub: '진격의 거인 시즌 3 파트 2',
-        img: 'https://shingeki.tv/season2/music/img/charason/charason_01_jk.jpg',
+        img: 'https://blog.kakaocdn.net/dn/bnRVnp/btrAssgvDyv/1TgQskpri7BKdbhB33j0sk/img.jpg',
         cd:'https://blog.kakaocdn.net/dn/sHKyc/btrAdxwuLnC/Nl8bzx1VECYy9KKKEBTwhK/img.png',
     }
 ]

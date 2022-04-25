@@ -55,9 +55,9 @@ const Charater = () => {
                         </Border>
                         <Border></Border>
                         <Border>
-                            <Subtitle>
+                            {/* <Subtitle>
                                 CHARATER
-                            </Subtitle>
+                            </Subtitle> */}
                             <GSlider>
                                 <GIcon>
                                     <BsImage />
@@ -93,7 +93,7 @@ const Wrap = styled.div`
 
 const Container = styled.div`
     width:100%;
-    height:100vh;
+    height:100%;
     color:white;
     z-index:2;
     overflow:hidden;
@@ -143,6 +143,7 @@ const Border = styled.div`
     height:100%;
     border-right:1px solid  rgba(255,255,255,0.2);
     position:relative;
+    z-index:1;
     text-transform:uppercase;
     &:nth-child(3){
         border-right:1px solid  rgba(145,145,145,0.1);
@@ -168,7 +169,7 @@ const Border = styled.div`
         font-weight: 900;
         font-family: "Poppins", sans-serif;
         position:absolute;
-        bottom:82px;
+        bottom:62px;
         left:50%;
         display:flex;
         align-items:end;
@@ -176,12 +177,25 @@ const Border = styled.div`
         height:100%;
         font-size:70px;
         line-height:80%;
+        padding:0 20px;
+
+        @media screen and (max-width: 1641px) {
+            font-size:60px;
+        }
+
+        @media screen and (max-width: 1386px) {
+            font-size:50px;
+        }
+
+        @media screen and (max-width: 1155px) {
+            font-size:40px;
+        }
     }
 
     & h2{
         font-family: "Poppins", sans-serif;
         position:absolute;
-        bottom:82px;
+        bottom:62px;
         left:50%;
         display:flex;
         align-items:end;
@@ -189,11 +203,15 @@ const Border = styled.div`
         height:100%;
         font-size:20px;
         line-height:80%;
+
+        @media screen and (max-width: 1386px) {
+            font-size:18px;
+        }
     }
 
     & h3{
         position:absolute;
-        bottom:108px;
+        bottom:89px;
         display:flex;
         left:60px;
         align-items:end;
@@ -205,7 +223,7 @@ const Border = styled.div`
 
     & h4{
         position:absolute;
-        bottom:82px;
+        bottom:62px;
         left:60px;
         display:flex;
         align-items:end;
@@ -217,14 +235,15 @@ const Border = styled.div`
 `
 
 const Subtitle = styled.div`
-    bottom:230px;
     right:60px;
     position:absolute;
     font-weight:800;
     font-family: "Poppins", sans-serif;
     font-size:30px;
     z-index:999;
-    color:rgba(255,255,255,0.9);
+    color:#fff;
+    bottom:220px;
+    padding:1px 10px;
 `
 
 const GSlider = styled.div`
@@ -233,7 +252,7 @@ const GSlider = styled.div`
     position:absolute;
     z-index:0;
     right:0;
-    bottom:82px;
+    bottom:62px;
     display:flex;
     overflow:hidden;
 `
