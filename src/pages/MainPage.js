@@ -24,28 +24,28 @@ const MainPage = () => {
       if(deltaY > 0){
         if(scrollTop >= 0 && scrollTop < pageHeight){
           outerDivRef.current.scrollTo({
-            top:pageHeight  +  DIVIDER_HEIGHT * 2,
+            top:pageHeight  + DIVIDER_HEIGHT,
             left:0,
             behavior:'smooth',
           });
           setScrollIndex(2);
         } else if( scrollTop >= pageHeight && scrollTop < pageHeight * 2){
          outerDivRef.current.scrollTo({
-           top:pageHeight * 2 + DIVIDER_HEIGHT * 3,
+           top:pageHeight * 2 + DIVIDER_HEIGHT * 2,
            left:0,
            behavior:'smooth',
          });
          setScrollIndex(3);
         }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 3){
           outerDivRef.current.scrollTo({
-            top:pageHeight * 3 + DIVIDER_HEIGHT * 4,
+            top:pageHeight * 3 + DIVIDER_HEIGHT * 3,
             left:0,
             behavior:'smooth',
           });
           setScrollIndex(4);
         }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 4){
           outerDivRef.current.scrollTo({
-            top:pageHeight * 4 + DIVIDER_HEIGHT * 5,
+            top:pageHeight * 4 + DIVIDER_HEIGHT * 4,
             left:0,
             behavior:'smooth',
           });
@@ -53,7 +53,7 @@ const MainPage = () => {
         }
         else{
           outerDivRef.current.scrollTo({
-            top:pageHeight * 5 + DIVIDER_HEIGHT * 6,
+            top:pageHeight * 5 + DIVIDER_HEIGHT * 4,
             left:0,
             behavior:'smooth',
           });
@@ -62,14 +62,14 @@ const MainPage = () => {
       }else{
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           outerDivRef.current.scrollTo({
-            top: 0 + DIVIDER_HEIGHT,
+            top: 0,
             left: 0,
             behavior: "smooth",
           });
           setScrollIndex(1);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           outerDivRef.current.scrollTo({
-            top: 0 + DIVIDER_HEIGHT ,
+            top: 0,
             left: 0,
             behavior: "smooth",
           });
@@ -77,28 +77,28 @@ const MainPage = () => {
         }
         else if (scrollTop >= pageHeight && scrollTop < pageHeight * 3) {
           outerDivRef.current.scrollTo({
-            top: pageHeight + DIVIDER_HEIGHT * 2,
+            top: pageHeight + DIVIDER_HEIGHT,
             left: 0,
             behavior: "smooth",
           });
           setScrollIndex(2);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 4){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 2 + DIVIDER_HEIGHT * 3,
+            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
             left:0,
             behavior:"smooth",
           });      
           setScrollIndex(3);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 5){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 3 + DIVIDER_HEIGHT * 4,
+            top: pageHeight * 3 + DIVIDER_HEIGHT * 3,
             left:0,
             behavior:"smooth",
           }); 
           setScrollIndex(4);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 6){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 4 + DIVIDER_HEIGHT * 5,
+            top: pageHeight * 4 + DIVIDER_HEIGHT * 4,
             left:0,
             behavior:"smooth",
           }); 
@@ -135,8 +135,6 @@ const MainPage = () => {
           background: `${scrollIndex === 6 ? '#6b1319' : '#eee'}`}}></BarDot>
         <h1>06</h1>
       </Bar>
-
-    <Divide></Divide>
      <Main />
      
     <Divide></Divide>
@@ -170,6 +168,7 @@ const Divide = styled.div`
   width: 100%;
   height: 5px;
   background-color: #020202;
+}
 `
 
 const Contain = styled.div`

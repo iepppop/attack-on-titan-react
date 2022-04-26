@@ -376,8 +376,16 @@ const Content = styled.div`
   font-family: 'Pretendard';
   width:80%;
 
-  @media screen and (max-width: 1366px) {
-    margin:30px 0 0 0;
+  @media screen and (max-width: 2560px) {
+    font-size:24px;
+  }
+
+  @media screen and (max-width: 1980px) {
+    font-size:20px;
+  }
+
+  @media screen and (max-width: 1680px) {
+    font-size:18px;
   }
 
   @media screen and (max-width: 1440px) {
@@ -387,6 +395,7 @@ const Content = styled.div`
 
   @media screen and (max-width: 1366px) {
     font-size:14px;
+    margin:20px 0 0 0;
   }
 `
 
@@ -411,10 +420,25 @@ const InfoImgLine = styled.div`
     top:-300px;
   }
 
+  @media screen and (max-width: 1366px) {
+    right:-200px;
+  }
+
+  @media screen and (max-width: 1280px) {
+    right:-100px;
+    top:-250px;
+  }
+
+
  & img {
   @media screen and (max-width: 1440px) {
     width:98%;
     margin-top:50px;
+  }
+
+  @media screen and (max-width: 1366px) {
+    width:90%;
+    margin-top:80px;
   }
  }
 
@@ -436,7 +460,7 @@ const InfoLogo = styled.div`
 
   @media screen and (max-width: 1530px) {
     width:25%;
-}
+  }
 
   img{
     max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
@@ -449,7 +473,7 @@ const InfoLogo = styled.div`
     padding:90px;
   }
   @media screen and (max-width: 1280px) {
-    padding:50px;
+    padding:70px;
   }
   }
 `;
@@ -505,11 +529,15 @@ const PrevButton = styled.div`
     transform: translate(0,-50%);
     left:20px;  
     background:none;
-    font-size:60px;
+    font-size:50px;
     border:none;
     color:white;
     z-index:100;
     cursor:pointer;
+
+    @media screen and (max-width: 1280px) {
+      font-size:40px;
+    }
 `
 
 const NextButton = styled.div`
@@ -518,9 +546,14 @@ const NextButton = styled.div`
     transform: translate(0,-50%);
     right:20px;  
     background:none;
-    font-size:60px;
+    font-size:50px;
     border:none;
     color:white;
     z-index:100;
-    cursor:pointer;    max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
+    cursor:pointer;   
+     max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
+
+     @media screen and (max-width: 1280px) {
+      font-size:40px;
+    }
 `

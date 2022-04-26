@@ -11,7 +11,7 @@ const Watch = () => {
         <Container>
           <Grad />
             <Wrap>
-            <img src="https://blog.kakaocdn.net/dn/diwY6A/btrAh7xxibx/kpb7zklGfYeThCq8ctS1J1/img.png" />
+            <img src="https://blog.kakaocdn.net/dn/dLluiw/btrAx7jmq1K/Hm1O4H4sHShhmV3dVLsNI1/img.png" />
             </Wrap>
             <WBackground>
                 <FireWrap>   
@@ -45,27 +45,39 @@ const Watch = () => {
                 </Content>
             </Border>
             <Border>
-                <Net>
-                    {/* <img src="https://blog.kakaocdn.net/dn/b9jYfZ/btrAmyAVytJ/VfFRkZ2sVOnqKXsSlX79KK/img.png" /> */}
-
+            </Border>
+            <Border>
+            <Net>
+            <img src="https://blog.kakaocdn.net/dn/sb2ms/btrAyM0mBwp/ovxlnDBSohLmoQLsscJK00/img.png" />
+                   <img src="https://blog.kakaocdn.net/dn/8ByJw/btrAwDwy75w/h6iZ2a9kZeyI3Upk2cWQKk/img.png" />
                     </Net>
             </Border>
             <Border>
 
             </Border>
-            <Border>
-
-            </Border>
-        
+        <Adress>
+            copyright © 2022 attack on titan all right reserved.
+        </Adress>
         </Container>
     )
 }
 export default Watch;
 
+const Adress = styled.div`
+    position:absolute;
+    bottom:62px;
+    left:50%;
+    transform:translate(-50%,0);
+    color:white;
+    font-size:10px;
+    opacity:0.3;
+    letter-spacing: 1px;
+`
+
 const Wrap = styled.div`
     position:absolute;
     width:100%;
-    height:80%;
+    height:100%;
     overflow:hidden;
     left:0;
     bottom:0;
@@ -196,8 +208,14 @@ const Content = styled.div`
     left:50%;
     transform: translate(-50%,0);
 
+
     & h1{
         display:inline-block;
+
+        @media screen and (max-width: 1366px) {
+            font-size:26px;
+            line-height:100%;
+          }
     }
 
     & h2{
@@ -209,16 +227,27 @@ const Content = styled.div`
 
 const Net = styled.div`
     position:absolute;
-    top:-10px;
-    width:100%;
-    text-align:center;
+    top:80px;
+    max-width:100%;
+    left:50%;
+    transform:translate(-50%,0);
+    display:flex;
 
     img:first-child{
-       margin-right:40px;
+       margin-right:50px;
     }
 
     img {
-        padding:100px;
-        width:100%;
+        width:90px;
+        height:90px;
+        border-radius:20px;
+        box-shadow: 3px 3px 0 #2d2d2d;
+
+        @media screen and (max-width: 1366px) {
+            width:60px;
+            height:60px;
+          }
     }
+
+
 `

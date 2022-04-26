@@ -172,6 +172,10 @@ const Title = styled.div`
     padding:10px 30px;
     text-transform:uppercase;
     font-family: "Poppins", sans-serif;
+
+    @media screen and (max-width: 1366px) {
+        font-size:20px;
+      }
 }
 
 & h2{
@@ -179,6 +183,10 @@ const Title = styled.div`
     font-weight:200;
     font-family: 'Pretendard';
     padding:20px 0;
+
+    @media screen and (max-width: 1366px) {
+        font-size:14px;
+      }
 }
 `
 

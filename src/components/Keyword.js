@@ -245,7 +245,7 @@ const ImgWrap = styled.div`
     overflow: hidden;
     position:absolute;
     height:100%;
-    z-index:-1;
+    z-index:-1;object-fit: cover;
 
     & img{
      object-fit: cover;
@@ -281,6 +281,11 @@ const Sub = styled.div`
 
 const SubBox = styled.div`
     display:flex;
+
+    @media screen and (max-width: 1366px) {
+      margin: 0 0 30px 0;
+    }
+  
 `
 
 const ImgWrap2 = styled.div`
