@@ -176,6 +176,22 @@ const HeroName = styled.div`
   font-weight: 800;
   font-family: "Poppins", sans-serif;
 
+  @media screen and (max-width: 1780px) {
+    font-size: 47px;
+}
+
+  @media screen and (max-width: 1632px) {
+    font-size: 40px;
+}
+
+@media screen and (max-width: 1420px) {
+  font-size: 37px;
+}
+
+@media screen and (max-width: 1320px) {
+  font-size: 33px;
+}
+
   ${Container}:hover & {
     opacity: 1;
     transition: 0.4s ease-in-out;
@@ -197,6 +213,14 @@ const Gradient = styled.div`
 
 const HeroP = styled.div`
   margin-top: -30px;
+
+  @media screen and (max-width: 1632px) {
+    margin-top: -25px;
+}
+
+@media screen and (max-width: 1320px) {
+  margin-top: -20px;
+}
 `;
 
 const Koreaname = styled.div`
