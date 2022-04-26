@@ -385,7 +385,7 @@ const Content = styled.div`
   }
 
   @media screen and (max-width: 1680px) {
-    font-size:18px;
+    font-size:16px;
   }
 
   @media screen and (max-width: 1440px) {
