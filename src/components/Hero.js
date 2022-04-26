@@ -410,11 +410,6 @@ const InfoImgLine = styled.div`
   opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
   transtion: 4s ease;
 
-  @media screen and (max-width: 1366px) {
-    right:100px;
-    top:-150px;
-  }
-
   @media screen and (max-width: 1600px) {
     right:-100px;
     top:-300px;
@@ -431,6 +426,11 @@ const InfoImgLine = styled.div`
 
 
  & img {
+  @media screen and (max-width: 1680px) {
+    width:96%;
+    margin-top:50px;
+  }
+
   @media screen and (max-width: 1440px) {
     width:98%;
     margin-top:50px;
