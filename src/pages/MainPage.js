@@ -12,6 +12,7 @@ import Watch from "../components/Watch";
 const MainPage = () => {
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
+  const DIVIDER_HEIGHT = 5;
 
   useEffect(() => {
     const wheelHandler = (e) => {
@@ -23,28 +24,28 @@ const MainPage = () => {
       if(deltaY > 0){
         if(scrollTop >= 0 && scrollTop < pageHeight){
           outerDivRef.current.scrollTo({
-            top:pageHeight,
+            top:pageHeight  +  DIVIDER_HEIGHT * 2,
             left:0,
             behavior:'smooth',
           });
           setScrollIndex(2);
         } else if( scrollTop >= pageHeight && scrollTop < pageHeight * 2){
          outerDivRef.current.scrollTo({
-           top:pageHeight * 2,
+           top:pageHeight * 2 + DIVIDER_HEIGHT * 3,
            left:0,
            behavior:'smooth',
          });
          setScrollIndex(3);
         }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 3){
           outerDivRef.current.scrollTo({
-            top:pageHeight * 3,
+            top:pageHeight * 3 + DIVIDER_HEIGHT * 4,
             left:0,
             behavior:'smooth',
           });
           setScrollIndex(4);
         }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 4){
           outerDivRef.current.scrollTo({
-            top:pageHeight * 4,
+            top:pageHeight * 4 + DIVIDER_HEIGHT * 5,
             left:0,
             behavior:'smooth',
           });
@@ -52,7 +53,7 @@ const MainPage = () => {
         }
         else{
           outerDivRef.current.scrollTo({
-            top:pageHeight * 5,
+            top:pageHeight * 5 + DIVIDER_HEIGHT * 6,
             left:0,
             behavior:'smooth',
           });
@@ -61,14 +62,14 @@ const MainPage = () => {
       }else{
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           outerDivRef.current.scrollTo({
-            top: 0,
+            top: 0 + DIVIDER_HEIGHT,
             left: 0,
             behavior: "smooth",
           });
           setScrollIndex(1);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           outerDivRef.current.scrollTo({
-            top: 0,
+            top: 0 + DIVIDER_HEIGHT ,
             left: 0,
             behavior: "smooth",
           });
@@ -76,28 +77,28 @@ const MainPage = () => {
         }
         else if (scrollTop >= pageHeight && scrollTop < pageHeight * 3) {
           outerDivRef.current.scrollTo({
-            top: pageHeight,
+            top: pageHeight + DIVIDER_HEIGHT * 2,
             left: 0,
             behavior: "smooth",
           });
           setScrollIndex(2);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 4){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 2,
+            top: pageHeight * 2 + DIVIDER_HEIGHT * 3,
             left:0,
             behavior:"smooth",
           });      
           setScrollIndex(3);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 5){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 3,
+            top: pageHeight * 3 + DIVIDER_HEIGHT * 4,
             left:0,
             behavior:"smooth",
           }); 
           setScrollIndex(4);
         }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 6){
           outerDivRef.current.scrollTo({
-            top: pageHeight * 4,
+            top: pageHeight * 4 + DIVIDER_HEIGHT * 5,
             left:0,
             behavior:"smooth",
           }); 
@@ -134,7 +135,11 @@ const MainPage = () => {
           background: `${scrollIndex === 6 ? '#6b1319' : '#eee'}`}}></BarDot>
         <h1>06</h1>
       </Bar>
+
+    <Divide></Divide>
      <Main />
+     
+    <Divide></Divide>
       <HeroWrap >
         <Hero {...levi} />
         <Hero {...armin} />
@@ -142,16 +147,30 @@ const MainPage = () => {
         <Hero {...mikasa} />
         <Hero {...reiner} />
       </HeroWrap>
+      
+    <Divide></Divide>
       <CharaterWrap>
       <Charater />
       </CharaterWrap>
+      
+    <Divide></Divide>
       <Keyword />
+      
+    <Divide></Divide>
       <Music />
+      
+    <Divide></Divide>
       <Watch />
     </Contain>
   )
 }
 export default MainPage;
+
+const Divide = styled.div`
+  width: 100%;
+  height: 5px;
+  background-color: #020202;
+`
 
 const Contain = styled.div`
   height:100vh;
