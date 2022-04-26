@@ -159,9 +159,15 @@ const Img = styled.img`
   object-fit: cover;
   @media screen and (max-width: 1920px) {
     margin-left:-50px;
-}
+  }
 
+  @media screen and (max-width: 1366px) {
+    margin-left:0;
+  }
 
+  @media screen and (max-width: 1280px) {
+    margin-left:-100px;
+  }
 
 `;
 
@@ -176,20 +182,28 @@ const HeroName = styled.div`
   font-weight: 800;
   font-family: "Poppins", sans-serif;
 
-  @media screen and (max-width: 1780px) {
-    font-size: 47px;
+  @media screen and (max-width: 2560px) {
+    font-size: 74px;
 }
 
-  @media screen and (max-width: 1632px) {
-    font-size: 40px;
+  @media screen and (max-width: 1920px) {
+    font-size: 52px;
 }
 
-@media screen and (max-width: 1420px) {
-  font-size: 37px;
+  @media screen and (max-width: 1680px) {
+    font-size: 45px;
 }
 
-@media screen and (max-width: 1320px) {
-  font-size: 33px;
+  @media screen and (max-width: 1600px) {
+    font-size: 43px;
+}
+
+  @media screen and (max-width: 1440px) {
+    font-size: 37px;
+}
+
+  @media screen and (max-width: 1366px) {
+    font-size: 34px;
 }
 
   ${Container}:hover & {
@@ -213,13 +227,16 @@ const Gradient = styled.div`
 
 const HeroP = styled.div`
   margin-top: -30px;
-
-  @media screen and (max-width: 1632px) {
-    margin-top: -25px;
+  @media screen and (max-width: 2560px) {
+    margin-top: -50px;
 }
 
-@media screen and (max-width: 1320px) {
-  margin-top: -20px;
+  @media screen and (max-width: 1920px) {
+    margin-top: -30px;
+}
+
+  @media screen and (max-width: 1440px) {
+  margin-top: -25px;
 }
 `;
 
@@ -229,6 +246,10 @@ const Koreaname = styled.div`
   vertical-align: top;
   padding: 3px 10px 0px 10px;
   font-weight: 600;
+
+  @media screen and (max-width: 1366px) {
+    font-size: 20px;
+  }
 `;
 
 
@@ -325,6 +346,9 @@ const InfoLine = styled.div`
     @media screen and (max-width: 1445px) {
         font-size: 80px;
     }
+    @media screen and (max-width: 1366px) {
+      font-size: 70px;
+    }
   }
 
   h2{
@@ -338,7 +362,12 @@ const InfoLine = styled.div`
     @media screen and (max-width: 1445px) {
         font-size: 30px;
     }
+
+    @media screen and (max-width: 1366px) {
+      font-size:24px;
+      padding: 2px 10px;
   }
+}
 `
 
 const Content = styled.div`
@@ -346,6 +375,19 @@ const Content = styled.div`
   line-height: 180%;
   font-family: 'Pretendard';
   width:80%;
+
+  @media screen and (max-width: 1366px) {
+    margin:30px 0 0 0;
+  }
+
+  @media screen and (max-width: 1440px) {
+    margin:20px 0 0 0;
+    font-size:15px;
+  }
+
+  @media screen and (max-width: 1366px) {
+    font-size:14px;
+  }
 `
 
 const InfoImgLine = styled.div`
@@ -358,18 +400,23 @@ const InfoImgLine = styled.div`
   right:-200px;
   opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
   transtion: 4s ease;
-  
-  @media screen and (max-width: 1530px) {
-    right:0px;
-}
 
-  @media screen and (max-width: 1445px) {
+  @media screen and (max-width: 1366px) {
     right:100px;
-}
+    top:-150px;
+  }
 
-@media screen and (max-width: 1245px) {
-    right:200px;
-}
+  @media screen and (max-width: 1600px) {
+    right:-100px;
+    top:-300px;
+  }
+
+ & img {
+  @media screen and (max-width: 1440px) {
+    width:98%;
+    margin-top:50px;
+  }
+ }
 
 `
 
@@ -391,13 +438,19 @@ const InfoLogo = styled.div`
     width:25%;
 }
 
-@media screen and (max-width: 1245px) {
-    width:30%;
-}
-
   img{
     max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
     padding:20px;
+
+  @media screen and (max-width: 1440px) {
+    padding:80px;
+  }
+  @media screen and (max-width: 1366px) {
+    padding:90px;
+  }
+  @media screen and (max-width: 1280px) {
+    padding:50px;
+  }
   }
 `;
 

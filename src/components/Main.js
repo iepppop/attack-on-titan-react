@@ -69,10 +69,11 @@ const fadein = keyframes`
 `
 
 const LogoWrapper = styled.div`
-position:fixed;
+    position:fixed;
+    width:100%;
     top:${props => props.click ? '8%' : '50%'};
-    left:${props => props.click ? '35.5%' : '50%'};
-    transform:translate(-50%,-50%);
+    left:${props => props.click ? '58px' : '50%'};
+    transform:${props => props.click ? '0' : 'translate(-50%,-50%);'};
     z-index:2;
     transition: 0.5s ease-out;
 
