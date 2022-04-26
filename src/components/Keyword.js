@@ -139,7 +139,7 @@ const Keyword = () => {
 export default Keyword;
 
 const Container = styled.div`
-  height:100%;
+  height: 100vh;
   background:#020202;
   width:100%;
   display: flex;

@@ -1,157 +1,125 @@
 import styled, { keyframes } from "styled-components";
-import React, { useState, useRef } from "react";
-import { BsChevronLeft,BsChevronRight, BsX } from "react-icons/bs";
+import React, { useState, useRef, useEffect } from "react";
+import { BsChevronLeft, BsChevronRight, BsX } from "react-icons/bs";
 
 const Hero = ({
-  img,
-  alt,
-  name,
-  name2,
-  name3,
-  korean,
-  color,
-  japann,
-  infoimg,
-  content,
-  mark,
-  videos,
-  videos2,
-  videos3,
-  videos4
+    img,
+    alt,
+    name,
+    name2,
+    name3,
+    korean,
+    color,
+    japann,
+    infoimg,
+    content,
+    mark,
+    videos,
+    videos2,
+    videos3,
+    videos4
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
 
-  const sliderRef = useRef();
-  const videoImg = [`${videos}`, `${videos2}`, `${videos3}`, `${videos4}`]
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isSwiping, setIsSwiping] = useState(false);
-  const transitionTime = 500;
-  const transitionStyle = `transform ${transitionTime}ms ease 0s`;
-  const [slideTransition, setTransition] = useState(transitionStyle);
+    const sliderRef = useRef();
+    const videoImg = [`${videos}`, `${videos2}`, `${videos3}`, `${videos4}`]
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-  function setSlides() {
-    let addedFront = [];
-    let addedLast = [];
-    var index = 0;
-    while (index < 3) {
-      addedLast.push(videoImg[index % videoImg.length])
-      addedFront.unshift(videoImg[videoImg.length - 1 - index % videoImg.length])
-      index++;
+    const NextBtn = () => {
+        if (currentIndex >= 1) {
+            return;
+        } else {
+            setCurrentIndex(currentIndex + 1);
+        }
     }
-    return [...addedFront, ...videoImg, ...addedLast];
-  }
 
-  let slides = setSlides();
-
-  function handleSlide(index) {
-    if (index < 0) {
-      index = videoImg.length - 1;
+    const PrevBtn = () => {
+        if (currentIndex === 0) {
+            return;
+        } else {
+            setCurrentIndex(currentIndex - 1);
+            console.log(currentIndex);
+        }
     }
-    else if (index > videoImg.length - 1) {
-      index = 0;
-    }
-    setCurrentIndex(index);
-  }
 
-  function getItemIndex(index) {
-    index -= 2;
-    if (index < 0) {
-      index += videoImg.length;
-    }
-    else if (index >= videoImg.length + 1) {
-      index -= videoImg.length;
-    }
-    return index;
-  }
+    useEffect(() => {
+        sliderRef.current.style.transition = '0.4s';
+        sliderRef.current.style.transform = `translateX(-${sliderRef.current.offsetWidth * currentIndex}px)`;
+    }, [currentIndex]);
 
-  function replaceSlide(index) {
-    setTimeout(() => {
-      setTransition('');
-      setCurrentIndex(index);
-  }, transitionTime)
-  }
-
-  function handleSwipe(direction) {
-    setIsSwiping(true);
-    handleSlide(currentIndex + direction)
-}
-
-  return (
-    <>
-      <Container>
-        <Wrapper onClick={toggle}>
-          <Img src={img} alt={alt} />
-          <HeroName>
-            {name}
-            <HeroP>{name2}</HeroP>
-            <Koreaname style={{ background: color }}>{korean}</Koreaname>
-          </HeroName>
-          <Gradient/>
-        </Wrapper>
-        <InfoWrap isOpen={isOpen}>
-          <Info>
-            <XIcon onClick={toggle} isOpen={!isOpen}>
-            <BsX/>
-            </XIcon>
-            <InfoBackground>
-              <Name>
-                <Nameh1>
-                  {name} {name2}
-                </Nameh1>
-                <Nameh2 style={{ background: color }}>{korean}</Nameh2>
-                <Content>{content}</Content>
-              </Name>
-              <InfoImg delay={20} isOpen={!isOpen} onClick={toggle}> 
-              <InfoWidth>
-              <img src={infoimg} />
-              </InfoWidth>
-              </InfoImg>
-            </InfoBackground>
-            <InfoBottom>
-              <InfoMark style={{ background: color }}>
-                <MarkWrap>
-                  <InfoImgMark src={mark} width={250} />
-                </MarkWrap>
-              </InfoMark>
-              <SliderWrap>
-                <SliderWrapper
-                  ref={sliderRef} style={{
-                    
-                    transform: `translateX(${-550 * currentIndex + 250}px)`,
-                    transition: slideTransition
-                  }}>
-                  {slides.map((video, index) => {
-                    const itemIndex = getItemIndex(index);
-                    return (
-                      <a>
-                      <Imgs src={slides[itemIndex]} alt={`banner${itemIndex}`} 
-                      style={{ 
-                        opacity: `${currentIndex + 3 === index || currentIndex + 4 === index
-                          ? '1'
-                          : '0.5'}`, 
-                        }} />
-                      </a>
-                    );
-                  })}
-
-                </SliderWrapper>
-                <PrevButton direction="prev"  onClick={() => handleSwipe(-1)}>
+   
+    
+    return (
+        <>
+            <Container>
+                <Wrapper onClick={toggle}>
+                    <Img src={img} alt={alt} />
+                    <HeroName>
+                        {name}
+                        <HeroP>{name2}</HeroP>
+                        <Koreaname style={{ background: color }}>{korean}</Koreaname>
+                    </HeroName>
+                    <Gradient />
+                </Wrapper>
+                <InfoWrap isOpen={isOpen}>
+                    <Info>
+                        <XIcon onClick={toggle} isOpen={!isOpen}>
+                            <BsX />
+                        </XIcon>
+                        <InfoBackground>
+                            <InfoLine>
+                                <span>
+                                    <h1>{name} {name2}</h1>
+                                    <h2 style={{ background: color }}>{korean}</h2>
+                                    <Content>
+                                        <span>
+                                            {content}
+                                        </span>
+                                    </Content>
+                                </span>
+                                <InfoImgLine delay={20}>
+                                    <img src={infoimg} />
+                                </InfoImgLine>
+                            </InfoLine>
+                        </InfoBackground>
+                        <InfoBottom>
+                            <InfoLogo style={{ background: color }}>
+                                <img src={mark} />
+                            </InfoLogo>
+                            <InfoSlider>
+                                <InfoSliderWrap ref={sliderRef}>
+                                    <Slider>
+                                        <Slide>
+                                      <img src={videos} />
+                                      <img src={videos2} />                          
+                                      <img src={videos3} />
+                                      </Slide>
+                                      <Slide>
+                                      <img src={videos} />
+                                      <img src={videos2} />                          
+                                      <img src={videos3} />
+                                      </Slide>
+                                    </Slider>
+                                </InfoSliderWrap>
+                                <PrevButton onClick={PrevBtn}>
                   <BsChevronLeft />
                 </PrevButton>
-                <NextButton direction="next" onClick={() => handleSwipe(1)}>
+                <NextButton onClick={NextBtn}>
                   <BsChevronRight/>
                 </NextButton>
-              </SliderWrap>
-            </InfoBottom>
-          </Info>
-        </InfoWrap>
-      </Container>
-    </>
-  );
+                            </InfoSlider>
+                        </InfoBottom>
+                    </Info>
+
+                </InfoWrap>
+
+            </Container>
+        </>
+    );
 };
 export default Hero;
 
@@ -239,6 +207,32 @@ const Koreaname = styled.div`
   font-weight: 600;
 `;
 
+
+const Border = styled.div`
+    width:25%;
+    height:100%;
+    border-right:1px solid  rgba(255,255,255,0.2);
+    text-transform:uppercase;
+    color:white;
+    position:relative;
+    z-index:0;
+
+    &:nth-child(4){
+  }
+
+    &:nth-child(3){
+    position:relative;
+    z-index:0;
+  }
+
+    &:nth-child(5){
+  }
+
+    &:last-child{
+     border-right:none;
+  }
+`
+
 const InfoWrap = styled.div`
   width: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: 0;
@@ -250,7 +244,6 @@ const InfoWrap = styled.div`
   height: 100%;
   color: white;
   cursor: default;
-  flex-direction: column;
   display: flex;
 `;
 
@@ -268,13 +261,15 @@ const XIcon = styled.div`
 
 const Info = styled.div`
   height: 100%;
+  width:100%;
+  position:absolute;
 `;
 
 const InfoBackground = styled.div`
   background-image: url("https://blog.kakaocdn.net/dn/bQ8E5E/btryn9q7n3M/laKIi6BCAT54tLz1wfRq30/img.jpg");
   background-repeat: no-repeat;
   background-position-y: -150px;
-  z-index: 999;
+  z-index: 1;
   width: 100%;
   height: 64%;
   background-size: cover;
@@ -282,66 +277,76 @@ const InfoBackground = styled.div`
   overflow: hidden;
 `;
 
-const Name = styled.div`
-    height:100%;
-    padding:90px;
-`;
+const InfoLine = styled.div`
+  max-width:80%;
+  height:100%;
+  display:flex;
+  align-items: center;
 
-const Nameh1 = styled.h1`
-  font-size: 100px;
-  padding: 2px 15px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-`;
+  & span{
+      width:80%;
+      height:70%;
+      margin: 0 auto;
+      display:inline-block;
+      position:relative;
+      z-index:1;
+  }
 
-const Nameh2 = styled.div`
-  font-size: 40px;
-  display: inline-block;
-  padding: 2px 15px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 700;
-  margin: 0 0 0 20px;
-  margin-top: -20px;
-`;
+  h1{
+    font-size: 100px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    line-height:90%;
 
-const Content = styled.div`
-  margin: 50px 0 0 20px;
-  max-width: 700px;
-  line-height: 180%;
-  font-family: 'Pretendard';
-`;
-
-const fadein = keyframes`
-    0%{
-      opacity:0;
+    @media screen and (max-width: 1445px) {
+        font-size: 80px;
     }
-    100%{
-      opacity:1;
+  }
+
+  h2{
+    font-size: 40px;
+    display: inline-block;
+    padding: 2px 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+    margin:20px 0 0 0;
+
+    @media screen and (max-width: 1445px) {
+        font-size: 30px;
     }
+  }
 `
 
-const InfoImg = styled.div`
-  position: absolute;
-  right:-100px;
-  top: -300px;
-  width: ${({ isOpen }) => (isOpen ? "0" : "auto")};
-  transition: all 2s;
-  z-index: -1;
+const Content = styled.div`
+  margin:50px 0 0 0;
+  line-height: 180%;
+  font-family: 'Pretendard';
+  width:80%;
+`
+
+const InfoImgLine = styled.div`
+  position:absolute;
+  z-index:0;
+  width:80%;
+  height:100%;
+  right:0;
+  top:-300px;
+  right:-200px;
   opacity:${({ isOpen }) => (isOpen ? "0" : "1")};
   transtion: 4s ease;
-
-  @media screen and (max-width: 1615px) {
-    right:-400px;
+  
+  @media screen and (max-width: 1530px) {
+    right:0px;
 }
 
-@media screen and (max-width: 1310px) {
-  right:-490px;
+  @media screen and (max-width: 1445px) {
+    right:100px;
 }
 
-`;
+@media screen and (max-width: 1245px) {
+    right:200px;
+}
 
-const InfoWidth = styled.div`
-   
 `
 
 const InfoBottom = styled.div`
@@ -352,79 +357,93 @@ const InfoBottom = styled.div`
   box-sizing: border-box;
 `;
 
-const InfoMark = styled.div`
-  width: 20%;
-  display: flex;
+const InfoLogo = styled.div`
+  display:flex;
   align-items: center;
   justify-content: center;
+  width: 20%;
 
-  @media screen and (max-width: 1615px) {
+  @media screen and (max-width: 1530px) {
+    width:25%;
+}
+
+@media screen and (max-width: 1245px) {
     width:30%;
 }
 
-@media screen and (max-width: 1310px) {
-  width:35%;
+  img{
+    max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
+    padding:20px;
+  }
+`;
+
+const InfoSlider = styled.div`
+  width:80%;
+  position:relative;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @media screen and (max-width: 1530px) {
+    width:75%;
 }
 
-`;
+    @media screen and (max-width: 1245px) {
+    width:70%;
+}
 
-const MarkWrap = styled.div`
-  width: 250px;
-  height: 250px;
-  padding:10px;
-`;
-
-const InfoImgMark = styled.img`
-  width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
-
-`;
-
-const SliderWrap = styled.div`
-  width: 80%;
-  position: relative;
-  overflow:hidden;
-  margin:20px 0 20px 0;
-
-`;
-
-const Imgs = styled.img`
-  width:550px;
-  padding: 10px 16px;
-`;
-
-const SliderWrapper = styled.div`
-position:relative;
-width: auto;
-white-space: nowrap;
-transition:0.3s;
-position: relative;
-top: 0;
-display: flex;
-flex-direction: row;
-text-align: left;
-left:-109.5%;
-`;
-
-const PrevButton = styled.button`
-  position:absolute;
-  top:53%;
-  transform: translate(0,-50%);
-  left:10px;  
-  background:none;
-  font-size:80px;
-  border:none;
-  color:white;
-  cursor:pointer;
 `
 
-const NextButton = styled.button`
-  position:absolute;
-  right:10px; 
-  top:53%;
-  transform: translate(0,-50%);
-  background:none;
-  font-size:80px;
-  border:none;
-  color:white;
-  cursor:pointer;
+const InfoSliderWrap = styled.div`
+    position:absolute;
+    width:100%;
+    height:70%;
+`
+
+
+const Slider = styled.div`
+    height:100%;
+    min-width:200%;
+    display:flex;
+`
+
+const Slide = styled.div`
+     display:flex;
+     width:100%;
+     justify-content: center;
+     box-sizing: border-box;
+     padding:0 50px;
+     
+    img{
+      max-width: 100%;
+      margin:0 5px;
+      object-fit:cover;
+   }
+`
+
+const PrevButton = styled.div`
+    position:absolute;
+    top:53%;
+    transform: translate(0,-50%);
+    left:20px;  
+    background:none;
+    font-size:60px;
+    border:none;
+    color:white;
+    z-index:100;
+    cursor:pointer;
+`
+
+const NextButton = styled.div`
+    position:absolute;
+    top:53%;
+    transform: translate(0,-50%);
+    right:20px;  
+    background:none;
+    font-size:60px;
+    border:none;
+    color:white;
+    z-index:100;
+    cursor:pointer;    max-width: ${({ isOpen }) => (isOpen ? "0%" : "100%")};
 `
