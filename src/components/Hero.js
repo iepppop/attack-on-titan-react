@@ -191,7 +191,7 @@ const HeroName = styled.div`
 }
 
   @media screen and (max-width: 1680px) {
-    font-size: 45px;
+    font-size: 44px;
 }
 
   @media screen and (max-width: 1600px) {
