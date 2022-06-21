@@ -55,17 +55,17 @@ const Watch = () => {
             <Border>
 
             </Border>
-        <Adress>
+        <Address>
             copyright © 2022 attack on titan all right reserved.
-        </Adress>
+        </Address>
         </Container>
     )
 }
 export default Watch;
 
-const Adress = styled.div`
+const Address = styled.div`
     position:absolute;
-    bottom:62px;
+    bottom:30px;
     left:50%;
     transform:translate(-50%,0);
     color:white;
@@ -146,7 +146,7 @@ const Fire = styled.div`
     animation: ${opacity} 2.3s infinite linear;
 `
 
-const fall = keyframes`{
+const fall = keyframes`{ 
     to {
         transform: translateY(-300px);
     }
@@ -161,7 +161,8 @@ const FireFlake = styled.div`
     background:#fff;
     border-radius:50%;
     animation: ${fall} 4s infinite linear;
-    left:10px;     opacity:0.2; 
+    left:10px;
+    opacity:0.2; 
 }
 `
 
@@ -177,22 +178,11 @@ const WBackground = styled.div`
 const Border = styled.div`
     width:25%;
     height:100%;
-    border-right:1px solid  rgba(255,255,255,0.2);
+    border-right:1px solid rgba(255,255,255,0.2);
     text-transform:uppercase;
     color:white;
     position:relative;
     z-index:1;
-
-    &:nth-child(4){
-  }
-
-    &:nth-child(3){
-    position:relative;
-    z-index:0;
-  }
-
-    &:nth-child(5){
-  }
 
     &:last-child{
      border-right:none;
