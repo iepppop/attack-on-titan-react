@@ -137,7 +137,6 @@ const Hero = ({
                       </a>
                     );
                   })}
-
                 </SliderWrapper>
                 <PrevButton direction="prev"  onClick={() => handleSwipe(-1)}>
                   <BsChevronLeft />

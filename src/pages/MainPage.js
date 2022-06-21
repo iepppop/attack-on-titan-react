@@ -8,58 +8,64 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import Charater from "../components/Charater";
 import Music from "../components/Music";
 import Watch from "../components/Watch";
+import Loading from "../components/Loading";
 
 const MainPage = () => {
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
   const DIVIDER_HEIGHT = 5;
+  const [ready,setReady] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
+      setReady(false);
+    }, 3000)
+
     const wheelHandler = (e) => {
       e.preventDefault();
       const { deltaY } = e;
       const { scrollTop } = outerDivRef.current;
       const pageHeight = window.innerHeight;
-   
-      if(deltaY > 0){
-        if(scrollTop >= 0 && scrollTop < pageHeight){
+
+      if (deltaY > 0) {
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
           outerDivRef.current.scrollTo({
-            top:pageHeight  + DIVIDER_HEIGHT,
-            left:0,
-            behavior:'smooth',
+            top: pageHeight + DIVIDER_HEIGHT,
+            left: 0,
+            behavior: 'smooth',
           });
           setScrollIndex(2);
-        } else if( scrollTop >= pageHeight && scrollTop < pageHeight * 2){
-         outerDivRef.current.scrollTo({
-           top:pageHeight * 2 + DIVIDER_HEIGHT * 2,
-           left:0,
-           behavior:'smooth',
-         });
-         setScrollIndex(3);
-        }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 3){
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           outerDivRef.current.scrollTo({
-            top:pageHeight * 3 + DIVIDER_HEIGHT * 3,
-            left:0,
-            behavior:'smooth',
+            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
+            left: 0,
+            behavior: 'smooth',
+          });
+          setScrollIndex(3);
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 3) {
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 3 + DIVIDER_HEIGHT * 3,
+            left: 0,
+            behavior: 'smooth',
           });
           setScrollIndex(4);
-        }else if ( scrollTop >= pageHeight && scrollTop < pageHeight * 4){
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 4) {
           outerDivRef.current.scrollTo({
-            top:pageHeight * 4 + DIVIDER_HEIGHT * 4,
-            left:0,
-            behavior:'smooth',
+            top: pageHeight * 4 + DIVIDER_HEIGHT * 4,
+            left: 0,
+            behavior: 'smooth',
           });
           setScrollIndex(5);
         }
-        else{
+        else {
           outerDivRef.current.scrollTo({
-            top:pageHeight * 5 + DIVIDER_HEIGHT * 4,
-            left:0,
-            behavior:'smooth',
+            top: pageHeight * 5 + DIVIDER_HEIGHT * 4,
+            left: 0,
+            behavior: 'smooth',
           });
           setScrollIndex(6);
         }
-      }else{
+      } else {
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           outerDivRef.current.scrollTo({
             top: 0,
@@ -82,33 +88,33 @@ const MainPage = () => {
             behavior: "smooth",
           });
           setScrollIndex(2);
-        }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 4){
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 4) {
           outerDivRef.current.scrollTo({
             top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
-            left:0,
-            behavior:"smooth",
-          });      
+            left: 0,
+            behavior: "smooth",
+          });
           setScrollIndex(3);
-        }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 5){
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 5) {
           outerDivRef.current.scrollTo({
             top: pageHeight * 3 + DIVIDER_HEIGHT * 3,
-            left:0,
-            behavior:"smooth",
-          }); 
+            left: 0,
+            behavior: "smooth",
+          });
           setScrollIndex(4);
-        }else if (scrollTop >= pageHeight && scrollTop < pageHeight * 6){
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 6) {
           outerDivRef.current.scrollTo({
             top: pageHeight * 4 + DIVIDER_HEIGHT * 4,
-            left:0,
-            behavior:"smooth",
-          }); 
+            left: 0,
+            behavior: "smooth",
+          });
           setScrollIndex(5);
         }
-        else{
+        else {
           outerDivRef.current.scrollTo({
             top: 0,
-            left:0,
-            behavior:"smooth",
+            left: 0,
+            behavior: "smooth",
           });
           setScrollIndex(6);
         }
@@ -121,45 +127,57 @@ const MainPage = () => {
     };
   }, []);
 
+
+
+
   return (
     <Contain ref={outerDivRef}>
-      <Bar>
-        <h1>01</h1>
-        <BarDot scrollIndex={1} style={{background: `${scrollIndex === 1 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <BarDot scrollIndex={2} style={{background: `${scrollIndex === 2 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <BarDot scrollIndex={3} style={{background: `${scrollIndex === 3 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <BarDot scrollIndex={4} style={{background: `${scrollIndex === 4 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <BarDot scrollIndex={5} style={{background: `${scrollIndex === 5 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <BarDot scrollIndex={6} 
-        style={{
-          background: `${scrollIndex === 6 ? '#6b1319' : '#eee'}`}}></BarDot>
-        <h1>06</h1>
-      </Bar>
-     <Main />
-     
-    <Divide></Divide>
-      <HeroWrap >
-        <Hero {...levi} />
-        <Hero {...armin} />
-        <Hero {...eren} />
-        <Hero {...mikasa} />
-        <Hero {...reiner} />
-      </HeroWrap>
-      
-    <Divide></Divide>
-      <CharaterWrap>
-      <Charater />
-      </CharaterWrap>
-      
-    <Divide></Divide>
-      <Keyword />
-      
-    <Divide></Divide>
-      <Music />
-      
-    <Divide></Divide>
-      <Watch />
-    </Contain>
+{ready ? (
+  <>
+  <Loading />
+  </>
+)
+: (
+<>
+  <Bar>
+    <h1>01</h1>
+    <BarDot scrollIndex={1} style={{ background: `${scrollIndex === 1 ? '#6b1319' : '#eee'}` }}></BarDot>
+    <BarDot scrollIndex={2} style={{ background: `${scrollIndex === 2 ? '#6b1319' : '#eee'}` }}></BarDot>
+    <BarDot scrollIndex={3} style={{ background: `${scrollIndex === 3 ? '#6b1319' : '#eee'}` }}></BarDot>
+    <BarDot scrollIndex={4} style={{ background: `${scrollIndex === 4 ? '#6b1319' : '#eee'}` }}></BarDot>
+    <BarDot scrollIndex={5} style={{ background: `${scrollIndex === 5 ? '#6b1319' : '#eee'}` }}></BarDot>
+    <BarDot scrollIndex={6}
+      style={{
+        background: `${scrollIndex === 6 ? '#6b1319' : '#eee'}`
+      }}></BarDot>
+    <h1>06</h1>
+  </Bar >
+  <Main />
+  <Divide></Divide>
+  <HeroWrap >
+    <Hero {...levi} />
+    <Hero {...armin} />
+    <Hero {...eren} />
+    <Hero {...mikasa} />
+    <Hero {...reiner} />
+  </HeroWrap>
+
+  <Divide></Divide>
+  <CharaterWrap>
+    <Charater />
+  </CharaterWrap>
+
+  <Divide></Divide>
+  <Keyword />
+
+  <Divide></Divide>
+  <Music />
+
+  <Divide></Divide>
+  <Watch />
+      </>
+)}
+</Contain >
   )
 }
 export default MainPage;
