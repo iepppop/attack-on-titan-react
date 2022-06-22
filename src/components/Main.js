@@ -18,6 +18,8 @@ const Main = () => {
         <Container>
             <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
             <VideoBg2 />
+            <VideoBg1 />
+           
             <LogoWrapper click={click}>
                 <Logo src={logo} />
             </LogoWrapper>
@@ -38,10 +40,27 @@ const Container = styled.div`
 `
 
 const VideoBg = styled.video`
-    width: 100%;
-    height: 100%;
+    position:absolute;
+    z-index:2;
+    height:100vh;
+    width:100%;
+    top:0;
+    left:0;
     --o-object-fit: cover;
     object-fit: cover;
+    position:relative;
+    z-index:1;
+`
+
+const VideoBg1 = styled.div`
+    position:absolute;
+    z-index:1;
+    height:100vh;
+    width:100%;
+    top:0;
+    left:0;
+    background:black;
+    z-index:0;
 `
 
 const VideoBg2 = styled.div`

@@ -8,19 +8,13 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import Charater from "../components/Charater";
 import Music from "../components/Music";
 import Watch from "../components/Watch";
-import Loading from "../components/Loading";
 
 const MainPage = () => {
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
   const DIVIDER_HEIGHT = 5;
-  const [ready,setReady] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setReady(false);
-    }, 3000)
-
     const wheelHandler = (e) => {
       e.preventDefault();
       const { deltaY } = e;
@@ -132,13 +126,7 @@ const MainPage = () => {
 
   return (
     <Contain ref={outerDivRef}>
-{ready ? (
-  <>
-  <Loading />
-  </>
-)
-: (
-<>
+
   <Bar>
     <h1>01</h1>
     <BarDot scrollIndex={1} style={{ background: `${scrollIndex === 1 ? '#6b1319' : '#eee'}` }}></BarDot>
@@ -175,8 +163,7 @@ const MainPage = () => {
 
   <Divide></Divide>
   <Watch />
-      </>
-)}
+
 </Contain >
   )
 }
