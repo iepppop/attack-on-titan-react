@@ -5,7 +5,7 @@
 
 
 ### URL
-[https://attack-on-titan-react.vercel.app/](attack-on-titan-react.vercel.app)
+[https://oh-chat.vercel.app](https://oh-chat.vercel.app/)
 
 ### Install
     npm start
